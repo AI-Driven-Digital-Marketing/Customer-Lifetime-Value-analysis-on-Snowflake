@@ -1,4 +1,6 @@
 name: SNPark
+channels:
+  - snowflake
 dependencies:
   - snowflake-snowpark-python
   - numpy
@@ -6,3 +8,5 @@ dependencies:
   - plotly
   - matplotlib
   - seaborn
+  - scikit-learn
+  - xgboost
