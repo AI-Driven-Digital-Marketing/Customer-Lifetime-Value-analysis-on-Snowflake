@@ -1,0 +1,9 @@
+{
+  "account"   : "mg61873.ca-central-1.aws",
+  "user"      : "ESTPEGION",
+  "password"  : "SnowFlake1234!",
+  "role"      : "ACCOUNTADMIN",
+  "warehouse" : "COMPUTE_WH",
+  "database"  : "KPMG",
+  "schema"    : "PUBLIC"
+}
