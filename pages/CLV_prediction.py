@@ -22,6 +22,7 @@ with st.expander("Attribute/Filter"):
         st.number_input(
         'CD_DEP_COUNT:',
         0)
+# Submit widget
 
         st.button(
         'Submit'
@@ -29,6 +30,7 @@ with st.expander("Attribute/Filter"):
         st.button(
         'Cancel'
         )
+      
     with col2:
         st.markdown('#### Categorical Features ')
         st.selectbox(
@@ -81,3 +83,9 @@ st.markdown('''
             ## Customer Lifetime Value:
             
             ''')
+        if st.button('Submit'):
+            st.write('Why hello there')
+        elif st.button('Cancel'):
+            st.write('<reset explander value>')
+        else:
+            st.write('Please setup attributes')
