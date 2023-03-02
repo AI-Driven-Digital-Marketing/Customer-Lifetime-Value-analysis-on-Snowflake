@@ -7,7 +7,7 @@ import streamlit as st
 #     "Food.jpg",
 #     use_column_width = True,
 # )
-st.title("CLV Predication")
+st.title("XGBoost model to predict CLV")
 
 with st.expander("Attribute/Filter"):
     st.number_input(
@@ -19,8 +19,16 @@ with st.expander("Attribute/Filter"):
     st.number_input(
     'CD_DEP_COUNT:',
     0)
-    
-with st.expander("About this app"):
-    st.write('## XGBoost model to predict CLV')
+#Categorical
+    st.selectbox(
+      'CD_Gender',
+      ('Option1',
+       'Option2',
+       'Option3C_BIRTH_YEAR',
+       'CD_GENDER', 
+       'CD_MARITAL_STATUS', 
+       'CD_CREDIT_RATING', 
+       'CD_EDUCATION_STATUS', 
+       'CD_DEP_COUNT'),
+     )
 
-    st.write('Type inputs here......')
