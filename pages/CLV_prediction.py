@@ -78,11 +78,7 @@ with st.expander("Attribute/Filter"):
            'CD_EDUCATION_STATUS'),
          )
 #Output
-st.markdown('''
-            ----
-            ## Customer Lifetime Value:
-            
-            ''')
+
 if st.button('Submits'):
     
     st.write('<Modeling result here>')
@@ -93,7 +89,6 @@ elif st.button('Cancels'):
     
 else:
     st.markdown('''
-            ----
             ## Customer Lifetime Value:
             
             ''')
