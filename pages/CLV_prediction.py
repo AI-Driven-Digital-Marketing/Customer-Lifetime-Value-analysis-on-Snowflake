@@ -22,14 +22,6 @@ with st.expander("Attribute/Filter"):
         st.number_input(
         'CD_DEP_COUNT:',
         0)
-# Submit widget
-
-        st.button(
-        'Submit'
-        )
-        st.button(
-        'Cancel'
-        )
       
     with col2:
         st.markdown('#### Categorical Features ')
@@ -82,9 +74,10 @@ with st.expander("Attribute/Filter"):
 if st.button('Submits'):
     
     st.write('<Modeling result here>')
+    st.button('Reset')
     
 elif st.button('Cancels'):
-    
+    st.button('Submits')
     st.write('<reset explander value>')
     
 else:
