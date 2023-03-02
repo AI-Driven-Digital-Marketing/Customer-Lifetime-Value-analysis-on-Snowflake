@@ -71,13 +71,13 @@ with st.expander("Attribute/Filter"):
          )
 #Output
 
-if st.button('Submits'):
-    
-    st.write('<Modeling result here>')
+if st.button('Submit'):
     st.button('Reset')
+    st.write('<Modeling result here>')
     
-elif st.button('Cancels'):
-    st.button('Submits')
+    
+elif st.button('Reset'):
+    st.button('Submit')
     st.write('<reset explander value>')
     
 else:
