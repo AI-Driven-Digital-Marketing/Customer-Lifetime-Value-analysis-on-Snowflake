@@ -83,7 +83,13 @@ st.markdown('''
             ## Customer Lifetime Value:
             
             ''')
-if st.button('Submit'):
+# if st.button('Submit'):
+#     st.write('Why hello there')
+# elif st.button('Cancel'):
+#     st.write('<reset explander value>')
+# else:
+#     st.write('Please setup attributes')
+if st.button('Say hello'):
     st.write('Why hello there')
 else:
-    st.write('Please setup attributes')
+    st.write('Goodbye')
