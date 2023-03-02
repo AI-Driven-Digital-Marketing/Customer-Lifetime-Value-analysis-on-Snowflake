@@ -12,7 +12,7 @@ st.title("XGBoost model to predict CLV")
 with st.expander("Attribute/Filter"):
     col1, col2 = st.columns(2,gap = "medium")
     with col1:
-        st.markdown('#### Numeric Feature')
+        st.markdown('#### Numeric Features')
         st.number_input(
         'C_BIRTH_YEAR:',
         0)
@@ -23,7 +23,7 @@ with st.expander("Attribute/Filter"):
         'CD_DEP_COUNT:',
         0)
     with col2:
-        st.markdown('### Categorical ')
+        st.markdown('#### Categorical Features ')
         st.selectbox(
           'CD_Gender',
           ('Option1',
@@ -34,5 +34,37 @@ with st.expander("Attribute/Filter"):
            'CD_CREDIT_RATING', 
            'CD_EDUCATION_STATUS', 
            'CD_DEP_COUNT'),
+         )
+         st.selectbox(
+          'CD_MARITAL_STATUS',
+          ('Option1',
+           'Option2',
+           'Option3',
+           'CD_GENDER', 
+           'CD_MARITAL_STATUS', 
+           'CD_CREDIT_RATING', 
+           'CD_EDUCATION_STATUS', 
+           'CD_DEP_COUNT'),
+         )
+         st.selectbox(
+          'CD_CREDIT_RATING',
+          ('Option1',
+           'Option2',
+           'Option3',
+           'CD_GENDER', 
+           'CD_MARITAL_STATUS', 
+           'CD_CREDIT_RATING', 
+           'CD_EDUCATION_STATUS', 
+           'CD_DEP_COUNT'),
+         )
+         st.selectbox(
+          'CD_EDUCATION_STATUS',
+          ('Option1',
+           'Option2',
+           'Option3',
+           'CD_GENDER', 
+           'CD_MARITAL_STATUS', 
+           'CD_CREDIT_RATING', 
+           'CD_EDUCATION_STATUS'),
          )
 
