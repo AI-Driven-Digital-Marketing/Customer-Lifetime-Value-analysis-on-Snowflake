@@ -75,4 +75,9 @@ with st.expander("Attribute/Filter"):
            'CD_CREDIT_RATING', 
            'CD_EDUCATION_STATUS'),
          )
-
+#Output
+st.markdown('''
+            ----
+            ## Customer Lifetime Value:
+            
+            ''')
