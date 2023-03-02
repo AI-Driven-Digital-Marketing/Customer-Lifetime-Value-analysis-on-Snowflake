@@ -22,6 +22,13 @@ with st.expander("Attribute/Filter"):
         st.number_input(
         'CD_DEP_COUNT:',
         0)
+
+        st.button(
+        'Submit'
+        )
+        st.button(
+        'Cancel'
+        )
     with col2:
         st.markdown('#### Categorical Features ')
         st.selectbox(
