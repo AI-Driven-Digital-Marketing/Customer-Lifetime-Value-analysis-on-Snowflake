@@ -78,7 +78,7 @@ if st.button('Submit'):
     
 elif st.button('Reset'):
     st.button('Submit')
-    st.write('<reset explander value>')
+#     st.write('<reset explander value>')
     
 else:
     st.markdown('''
