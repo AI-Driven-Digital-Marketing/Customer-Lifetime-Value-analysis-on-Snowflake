@@ -29,6 +29,6 @@ with st.expander("Attribute/Filter"):
     0)
     
 with st.expander("About this app"):
-st.write('## XGBoost model to predict CLV')
+    st.write('## XGBoost model to predict CLV')
 
-st.write('Type inputs here......')
+    st.write('Type inputs here......')
