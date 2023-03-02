@@ -73,12 +73,16 @@ with st.expander("Attribute/Filter"):
 
 if st.button('Submit'):
     st.button('Reset')
+    st.markdown('''
+            ### Customer Lifetime Value:
+            
+            ''')
     st.write('<Modeling result here>')
     
     
 elif st.button('Reset'):
-    st.button('Submit')
-#     st.write('<reset explander value>')
+   
+     st.write('<reset explander value>')
     
 else:
     st.markdown('''
