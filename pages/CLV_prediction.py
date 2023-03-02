@@ -35,7 +35,8 @@ with st.expander("Attribute/Filter"):
            'CD_EDUCATION_STATUS', 
            'CD_DEP_COUNT'),
          )
-         st.selectbox(
+         
+        st.selectbox(
           'CD_MARITAL_STATUS',
           ('Option1',
            'Option2',
@@ -46,7 +47,7 @@ with st.expander("Attribute/Filter"):
            'CD_EDUCATION_STATUS', 
            'CD_DEP_COUNT'),
          )
-         st.selectbox(
+        st.selectbox(
           'CD_CREDIT_RATING',
           ('Option1',
            'Option2',
@@ -57,7 +58,7 @@ with st.expander("Attribute/Filter"):
            'CD_EDUCATION_STATUS', 
            'CD_DEP_COUNT'),
          )
-         st.selectbox(
+        st.selectbox(
           'CD_EDUCATION_STATUS',
           ('Option1',
            'Option2',
