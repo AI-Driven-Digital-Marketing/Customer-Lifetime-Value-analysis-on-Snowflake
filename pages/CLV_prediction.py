@@ -1,12 +1,15 @@
 import pandas as pd
 import streamlit as st
+from streamlit.report_thread import get_report_ctx
+from streamlit.server.server import Server
 
-# st.set_page_config(page_title= "CLV Predication")
+st.set_page_config(page_title= "Customer Lifetime Value")
 
-# st.image(
-#     "Food.jpg",
-#     use_column_width = True,
-# )
+st.image(
+    "src/1649251328-maximize-your-clv.webp",
+    use_column_width = True,
+)
+
 st.title("XGBoost model to predict CLV")
 
 with st.expander("Attribute/Filter"):
