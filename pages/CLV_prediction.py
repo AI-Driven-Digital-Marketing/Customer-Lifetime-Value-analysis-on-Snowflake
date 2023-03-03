@@ -74,13 +74,13 @@ with st.expander("Attribute/Filter"):
 if st.button('Submit'):
     st.button('Reset')
     col1, col2 = st.columns(2,gap = "medium")
-        with col1:
-            st.markdown('''
-            ### Customer Lifetime Value:
-            
-            ''')
-        with col2:    
-            st.write('<Modeling result here>')
+    with col1:
+        st.markdown('''
+        ### Customer Lifetime Value:
+
+        ''')
+    with col2:    
+        st.write('<Modeling result here>')
     
     
 elif st.button('Reset'):
