@@ -76,13 +76,13 @@ if st.button('Submit'):
     col1, col2 = st.columns(2,gap = "medium")
     with col1:
         st.markdown('''
-        --------------
+        --------------------------------
         ## Customer Lifetime Value:
 
         ''')
     with col2:    
         st.markdown('''
-        --------------
+        
         *<Modeling result ouput on here>*
         ''')
        
@@ -93,8 +93,8 @@ elif st.button('Reset'):
      st.write('<reset explander value>')
     
 else:
-    st.markdown('''
-    ----------  
+     st.markdown('''
+        ----------  
             ## Customer Lifetime Value:
             Please setup filter value
             ''')
