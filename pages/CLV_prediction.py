@@ -93,10 +93,12 @@ elif st.button('Reset'):
      st.write('<reset explander value>')
     
 else:
-     st.markdown('''
-        ----------  
-            ## Customer Lifetime Value:
-            Please setup filter value
-            ''')
+     st.markdown(
+         '''
+         ----------  
+         ## Customer Lifetime Value:
+         Please setup filter value！！
+         
+         ''')
     
 
