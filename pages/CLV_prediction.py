@@ -87,7 +87,7 @@ elif st.button('Reset'):
 else:
     st.markdown('''
             ## Customer Lifetime Value:
-            
+            Please setup filter value
             ''')
     
 
