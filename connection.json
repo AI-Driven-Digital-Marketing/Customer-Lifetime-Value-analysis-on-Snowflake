@@ -1,9 +1,9 @@
 {
-  "account"   : "mg61873.ca-central-1.aws",
-  "user"      : "ESTPEGION",
-  "password"  : "SnowFlake1234!",
+  "account"   : "ozb65844.us-east-1",
+  "user"      : "Rayden",
+  "password"  : "Xrd93123875",
   "role"      : "ACCOUNTADMIN",
   "warehouse" : "COMPUTE_WH",
-  "database"  : "KPMG",
+  "database"  : "FOOD",
   "schema"    : "PUBLIC"
 }
