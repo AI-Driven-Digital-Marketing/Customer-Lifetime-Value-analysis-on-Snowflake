@@ -24,7 +24,7 @@ with st.expander("Attribute/Filter"):
         max_value=2020, help = 'Please type VALID birth Year!!(Range: 1924~2020)')
         
         st.number_input(
-        'C_ZIP:', min_value= 601, max_value= 99981, help = 'Please type VALID zip code!!(eg: 02115:Boston,02148:Malden) ')
+        'C_ZIP:', min_value= 601, max_value= 99981, help = 'Please type VALID zip code!!(eg: 02115:Boston ) ')
   
         
     with col2:
@@ -32,7 +32,7 @@ with st.expander("Attribute/Filter"):
         st.selectbox(
           'CD_Gender',
           ('M',
-           'F'), help= ' M:Male, F:Female '
+           'F'), help= 'M: Male, F: Female'
          )
          
         st.selectbox(
@@ -50,6 +50,7 @@ with st.expander("Attribute/Filter"):
            'Good',
            'High Risk'),
            )
+        
         st.selectbox(
           'CD_EDUCATION_STATUS',
           ('Advanced Degree',
