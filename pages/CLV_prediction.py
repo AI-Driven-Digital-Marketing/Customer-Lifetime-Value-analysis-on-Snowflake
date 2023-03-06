@@ -23,7 +23,7 @@ with st.expander("Attribute/Filter"):
         'C_BIRTH_YEAR:', min_value=1924,
         max_value=2020)
         
-#         json_dict=json.load(open('zip_json.json'))
+        json_dict=json.load(open('zip_json.json'))
         
 
 #         json_dict = {
@@ -33,14 +33,12 @@ with st.expander("Attribute/Filter"):
 #         }
 
 #         # Convert JSON dictionary to list of key-value pairs
-#         options = list(json_dict.items())
+        options = list(json_dict.items())
 
 
 #         st.selectbox('CA_ZIP', options, index=0, format_func=lambda x: x.title(), typeahead=True)
 
-
-
-        options_dict = {"Option 1": 1, "Option 2": 2, "Option 3": 3}
+#         options_dict = {"Option 1": 1, "Option 2": 2, "Option 3": 3}
 
         # Define a lambda function to format the options
         format_func = lambda option_value: next(label for label, value in options_dict.items() if value == option_value)
