@@ -26,17 +26,27 @@ with st.expander("Attribute/Filter"):
 #         json_dict=json.load(open('zip_json.json'))
         
 
-        json_dict = {
-        "name": "John",
-        "age": 30,
-        "gender": "male"
-        }
+#         json_dict = {
+#         "name": "John",
+#         "age": 30,
+#         "gender": "male"
+#         }
 
-        # Convert JSON dictionary to list of key-value pairs
-        options = list(json_dict.items())
+#         # Convert JSON dictionary to list of key-value pairs
+#         options = list(json_dict.items())
 
 
-        st.selectbox('CA_ZIP', options, index=0, format_func=lambda x: x.title(), typeahead=True)
+#         st.selectbox('CA_ZIP', options, index=0, format_func=lambda x: x.title(), typeahead=True)
+
+
+
+        options_dict = {"Option 1": 1, "Option 2": 2, "Option 3": 3}
+
+        # Define a lambda function to format the options
+        format_func = lambda option_value: next(label for label, value in options_dict.items() if value == option_value)
+
+        # Create the searchable selectbox
+        selected_option = st.multiselect("Select an option", options=options_dict, format_func=format_func)
         
     with col2:
         st.markdown('#### Categorical Features ')
