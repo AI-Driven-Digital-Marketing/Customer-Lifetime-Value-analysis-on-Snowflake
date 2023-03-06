@@ -17,60 +17,46 @@ with st.expander("Attribute/Filter"):
     with col1:
         st.markdown('#### Numeric Features')
         st.number_input(
-        'C_BIRTH_YEAR:',
-        0)
+        'C_BIRTH_YEAR:', min_value=1924,
+        max_value=2020, label ='Range: 0-127952')
         st.number_input(
         'CA_ZIP:',
         0)
-        st.number_input(
-        'CD_DEP_COUNT:',
-        0)
-      
+  
     with col2:
         st.markdown('#### Categorical Features ')
         st.selectbox(
           'CD_Gender',
-          ('Option1',
-           'Option2',
-           'Option3',
-           'CD_GENDER', 
-           'CD_MARITAL_STATUS', 
-           'CD_CREDIT_RATING', 
-           'CD_EDUCATION_STATUS', 
-           'CD_DEP_COUNT'),
+          ('M',
+           'F'),
          )
          
         st.selectbox(
           'CD_MARITAL_STATUS',
-          ('Option1',
-           'Option2',
-           'Option3',
-           'CD_GENDER', 
-           'CD_MARITAL_STATUS', 
-           'CD_CREDIT_RATING', 
-           'CD_EDUCATION_STATUS', 
-           'CD_DEP_COUNT'),
+          ('S',
+           'D',
+           'W',
+           'U', 
+           'M'),
          )
         st.selectbox(
           'CD_CREDIT_RATING',
-          ('Option1',
-           'Option2',
-           'Option3',
-           'CD_GENDER', 
-           'CD_MARITAL_STATUS', 
-           'CD_CREDIT_RATING', 
-           'CD_EDUCATION_STATUS', 
-           'CD_DEP_COUNT'),
+          (),
          )
         st.selectbox(
           'CD_EDUCATION_STATUS',
-          ('Option1',
-           'Option2',
-           'Option3',
-           'CD_GENDER', 
-           'CD_MARITAL_STATUS', 
-           'CD_CREDIT_RATING', 
-           'CD_EDUCATION_STATUS'),
+          ('Advanced Degree',
+           'Secondary',
+           '2 yr Degree',
+           '4 yr Degree', 
+           'Unknown', 
+           'Primary', 
+           'College'),
+        st.selectbox(
+          'CD_DEP_COUNT',
+          ('0',
+           '1'),
+          )
          )
 #Output
 
@@ -100,9 +86,8 @@ else:
          '''
          ----------  
          ## Customer Lifetime Value:
-         Please setup filter value！！
-         22222
-         222 
+         Please setup filter value！！ 
          ''')
+         
     
 
