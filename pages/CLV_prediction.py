@@ -24,7 +24,7 @@ with st.expander("Attribute/Filter"):
         max_value=2020)
         
         st.number_input(
-        'C_ZIP:', 0)
+        'C_ZIP:', min_value=601, max_value= 99981)
   
         
     with col2:
