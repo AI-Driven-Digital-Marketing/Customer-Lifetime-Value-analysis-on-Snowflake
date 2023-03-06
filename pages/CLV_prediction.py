@@ -18,7 +18,7 @@ with st.expander("Attribute/Filter"):
         st.markdown('#### Numeric Features')
         st.number_input(
         'C_BIRTH_YEAR:', min_value=1924,
-        max_value=2020, label ='Range: 0-127952')
+        max_value=2020)
         st.number_input(
         'CA_ZIP:',
         0)
@@ -41,7 +41,7 @@ with st.expander("Attribute/Filter"):
          )
         st.selectbox(
           'CD_CREDIT_RATING',
-          (),
+          ('option1'),
          )
         st.selectbox(
           'CD_EDUCATION_STATUS',
@@ -51,13 +51,13 @@ with st.expander("Attribute/Filter"):
            '4 yr Degree', 
            'Unknown', 
            'Primary', 
-           'College'),
+           'College'),)
         st.selectbox(
           'CD_DEP_COUNT',
           ('0',
            '1'),
           )
-         )
+         
 #Output
 
 if st.button('Submit'):
