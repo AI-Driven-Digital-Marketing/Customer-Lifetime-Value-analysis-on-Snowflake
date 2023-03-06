@@ -19,10 +19,10 @@ with st.expander("Attribute/Filter"):
         st.number_input(
         'C_BIRTH_YEAR:', min_value=1924,
         max_value=2020)
-        st.number_input(
-        'CA_ZIP:',
-        0)
-  
+        
+        option = json.load(open('zip_json.json'))
+        st.multiselect('CA_ZIP:', options, default=[], select2=True)
+        
     with col2:
         st.markdown('#### Categorical Features ')
         st.selectbox(
