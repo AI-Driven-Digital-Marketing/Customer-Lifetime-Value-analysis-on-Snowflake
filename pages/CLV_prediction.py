@@ -21,10 +21,10 @@ with st.expander("Attribute/Filter"):
         st.markdown('#### Numeric Features')
         st.number_input(
         'C_BIRTH_YEAR:', min_value=1924,
-        max_value=2020)
+        max_value=2020, help = 'Please Type VALID Birth Year!!(Range: 1924~2020)')
         
         st.number_input(
-        'C_ZIP:', min_value=601, max_value= 99981, label= '???')
+        'C_ZIP:', min_value= 601, max_value= 99981, help = 'Please Type VALID Zip Code!!(eg: 02115:Boston, 02148:Malden)')
   
         
     with col2:
