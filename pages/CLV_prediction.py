@@ -1,3 +1,5 @@
+pip install streamlit-selectbox
+
 import pandas as pd
 import streamlit as st
 # from streamlit.report_thread import get_report_ctx
