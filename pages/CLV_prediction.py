@@ -23,7 +23,7 @@ with st.expander("Attribute/Filter"):
         'C_BIRTH_YEAR:', min_value=1924,
         max_value=2020)
         
-        json_dict=json.load(open('zip_json.json'))
+#         json_dict=json.load(open('zip_json.json'))
         
 
         options_dict = {
