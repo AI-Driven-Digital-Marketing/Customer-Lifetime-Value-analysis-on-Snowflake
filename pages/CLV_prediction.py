@@ -25,7 +25,7 @@ with st.expander("Attribute/Filter"):
         
 #         json_dict=json.load(open('zip_json.json'))
 #         options = list(json_dict.items())
-        st.selectbox('CA_ZIP', options, index=0, format_func=lambda x: x.title(), typeahead=True)
+#         st.selectbox('CA_ZIP', options, index=0, format_func=lambda x: x.title(), typeahead=True)
         
     with col2:
         st.markdown('#### Categorical Features ')
