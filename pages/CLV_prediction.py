@@ -86,12 +86,8 @@ else:
          '''
          ----------  
          ## Customer Lifetime Value:
-<<<<<<< HEAD
          Please setup filter value！！
          11111
-=======
-         Please setup filter value！！ 
->>>>>>> master
          ''')
          
     
