@@ -22,6 +22,9 @@ with st.expander("Attribute/Filter"):
         st.number_input(
         'C_BIRTH_YEAR:', min_value=1924,
         max_value=2020)
+        
+        st.number_input(
+        'C_ZIP:', 0)
   
         
     with col2:
@@ -90,8 +93,7 @@ else:
          '''
          ----------  
          ## Customer Lifetime Value:
-         Please setup filter value！！
-         11111
+         Please setup filter value！!
          ''')
          
     
