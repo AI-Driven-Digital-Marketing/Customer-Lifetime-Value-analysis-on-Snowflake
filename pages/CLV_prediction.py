@@ -14,8 +14,7 @@ st.image(
 st.title("XGBoost model to predict CLV")
 
 with st.expander("Attribute/Filter"):
-    json_dict=json.load(open('zip_json.json'))
-    options = list(json_dict.items())
+
     
     col1, col2 = st.columns(2,gap = "medium")
     with col1:
@@ -24,7 +23,8 @@ with st.expander("Attribute/Filter"):
         'C_BIRTH_YEAR:', min_value=1924,
         max_value=2020)
         
-
+        json_dict=json.load(open('zip_json.json'))
+        options = list(json_dict.items())
         st.selectbox('CA_ZIP', options, index=0, format_func=lambda x: x.title(), typeahead=True)
         
     with col2:
