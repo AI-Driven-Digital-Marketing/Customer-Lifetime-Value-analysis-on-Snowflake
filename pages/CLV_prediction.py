@@ -24,7 +24,7 @@ with st.expander("Attribute/Filter"):
         max_value=2020, help = 'Please type VALID birth Year!!(Range: 1924~2020)')
         
         st.number_input(
-        'C_ZIP:', min_value= 601, max_value= 99981, help = 'Please type VALID zip code!!(eg: 02115:Boston ) ')
+        'C_ZIP:', min_value= 601, max_value= 99981, help = 'Please type VALID zip code!!(eg: 02115: Boston) ')
   
         
     with col2:
