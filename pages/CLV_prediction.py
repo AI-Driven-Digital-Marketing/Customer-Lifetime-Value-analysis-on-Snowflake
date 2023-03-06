@@ -42,8 +42,11 @@ with st.expander("Attribute/Filter"):
          )
         st.selectbox(
           'CD_CREDIT_RATING',
-          ('option1'),
-         )
+          ('Low Risk',
+           'Unknown',
+           'Good',
+           'High Risk'),
+           )
         st.selectbox(
           'CD_EDUCATION_STATUS',
           ('Advanced Degree',
