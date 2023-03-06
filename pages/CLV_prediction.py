@@ -1,4 +1,3 @@
-
 import pandas as pd
 import streamlit as st
 # from streamlit.report_thread import get_report_ctx
@@ -22,7 +21,7 @@ with st.expander("Attribute/Filter"):
         max_value=2020)
         
         option = json.load(open('zip_json.json'))
-        st.multiselect('CA_ZIP:', options, default=[], select2=True)
+        st.selectbox('CA_ZIP', options, index=0, format_func=lambda x: x.title(), typeahead=True)
         
     with col2:
         st.markdown('#### Categorical Features ')
