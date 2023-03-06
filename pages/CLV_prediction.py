@@ -67,7 +67,9 @@ col3, col4 = st.columns([8,2],gap = "medium")
 
 with col3:
     model_select = st.radio('Select the Model here:',
-                           ['Linear Regression', 'XGBoost'])
+                           #[ 'XGBoost','Linear Regression']
+                            [ 'XGBoost']
+                           )
 with col4:
     submit =  st.button('Submit')
     reset = st.button('Reset ')
@@ -109,43 +111,16 @@ def predict(df:  PandasDataFrame[int, str, str, str, str, str, int]) -> PandasSe
     m = read_file('model.joblib')       
     df.columns = features
     return m.predict(df)   
-
+# if click submit
 if submit:
     typed_input = [[Cus_by, ca_zip.get(str(Cs_zip), '66668'),Cus_gender,Cus_marital,Cus_credit,Cus_edu, int(Cus_dep)]]
     input_df = session.create_dataframe(typed_input, schema=features)
     typed_output = input_df.select(*input_df,
                     predict(*input_df).alias('PREDICTION'))
-    typed_output.show()
+    pd.DataFrame(typed_output.collect())
+# if click reset  
 if reset:
     st.write('xuyao reset ma? hao ma fan')
     
-# if st.button('Submit'):
-#     st.button('Reset')
-#     col1, col2 = st.columns(2,gap = "medium")
-#     with col1:
-#         st.markdown('''
-#         --------------------------------
-#         ## Customer Lifetime Value:
 
-#         ''')
-#     with col2:    
-#         st.markdown('''
-        
-#         *<Modeling result ouput on here>*
-#         ''')
-       
-    
-    
-# elif st.button('Reset'):
-   
-#      st.write('<reset explander value>')
-    
-# else:
-#      st.markdown(
-#          '''
-#          ----------  
-#          ## Customer Lifetime Value:
-#          Please setup filter value！!
-#          ''')
-         
     
