@@ -26,14 +26,14 @@ with st.expander("Attribute/Filter"):
         json_dict=json.load(open('zip_json.json'))
         
 
-#         json_dict = {
-#         "name": "John",
-#         "age": 30,
-#         "gender": "male"
-#         }
+        options_dict = {
+        "name": "John",
+        "age": 30,
+        "gender": "male"
+        }
 
 #         # Convert JSON dictionary to list of key-value pairs
-        options = list(json_dict.items())
+#         options = list(json_dict.items())
 
 
 #         st.selectbox('CA_ZIP', options, index=0, format_func=lambda x: x.title(), typeahead=True)
