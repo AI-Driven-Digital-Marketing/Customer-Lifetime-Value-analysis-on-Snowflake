@@ -1,4 +1,3 @@
-pip install streamlit-selectbox
 
 import pandas as pd
 import streamlit as st
