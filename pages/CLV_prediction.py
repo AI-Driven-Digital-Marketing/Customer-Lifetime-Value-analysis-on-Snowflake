@@ -67,8 +67,8 @@ col3, col4 = st.columns([8,2],gap = "medium")
 
 with col3:
     model_select = st.radio('Select the Model here:',
-                           #[ 'XGBoost','Linear Regression']
-                            [ 'XGBoost']
+                           [ 'XGBoost','Linear Regression']
+                            #[ 'XGBoost']
                            )
 with col4:
     submit =  st.button('Submit')
@@ -85,15 +85,18 @@ def initialize_SF():
     session.use_schema('demo')
     session.add_packages('snowflake-snowpark-python', 'scikit-learn', 'pandas', 'numpy', 'joblib', 'cachetools', 'xgboost', 'joblib')
     session.add_import("@ml_models_10T/model.joblib")  
+    session.add_import("@ml_models_LR_10T/model_LR.joblib")
     return session, ca_zip
 session, ca_zip = initialize_SF()
 
 # choose model here
 if model_select == 'XGBoost':    
-    model_name = 'ml_models_10T'
+    stage_name = 'ml_models_10T'
+    model_name = 'model.joblib'
+    
 else:
-    model_name = 'ml_models_LR_10T'
-
+    stage_name = 'ml_models_LR_10T'
+    model_name = 'model_LR.joblib'
 
 features = [ 'C_BIRTH_YEAR', 'CA_ZIP', 'CD_GENDER', 'CD_MARITAL_STATUS', 'CD_CREDIT_RATING', 'CD_EDUCATION_STATUS', 'CD_DEP_COUNT']
 
@@ -106,9 +109,9 @@ def read_file(filename):
             m = joblib.load(file)
             return m
 
-@F.pandas_udf(session=session, max_batch_size=10000, is_permanent=True, stage_location=f'@{model_name}', replace=True, name="clv_xgboost_udf")
+@F.pandas_udf(session=session, max_batch_size=10000, is_permanent=True, stage_location=f'@{stage_name}', replace=True, name="clv_xgboost_udf")
 def predict(df:  PandasDataFrame[int, str, str, str, str, str, int]) -> PandasSeries[float]:
-    m = read_file('model.joblib')       
+    m = read_file(model_name)       
     df.columns = features
     return m.predict(df)   
 # if click submit
