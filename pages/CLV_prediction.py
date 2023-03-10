@@ -113,7 +113,8 @@ def read_file(filename):
 def predict(df:  PandasDataFrame[int, str, str, str, str, str, int]) -> PandasSeries[float]:
     m = read_file(model_name)       
     df.columns = features
-    return m.predict(df)   
+    return m.predict(df) 
+
 # if click submit
 if submit:
     typed_input = [[Cus_by, ca_zip.get(str(Cs_zip), '66668'),Cus_gender,Cus_marital,Cus_credit,Cus_edu, int(Cus_dep)]]
@@ -126,7 +127,7 @@ if submit:
     st.write(output)
 # if click reset  
 if reset:
-    st.write('xuyao reset ma? hao ma fan')
+    st.write('放弃reset？')
     
 
     
