@@ -83,7 +83,7 @@ def initialize_SF():
     session.use_warehouse('FE_AND_INFERENCE_WH')
     session.use_database('tpcds_xgboost')
     session.use_schema('demo')
-    session.add_packages('snowflake-snowpark-python', 'scikit-learn', 'pandas', 'numpy', 'joblib', 'cachetools', 'xgboost', 'joblib')
+    session.add_packages('snowflake-snowpark-python', 'scikit-learn', 'pandas', 'numpy', 'joblib', 'cachetools', 'xgboost==1.5.0', 'joblib')
     session.add_import("@ml_models_10T/model.joblib")  
     session.add_import("@ml_models_LR_10T/model_LR.joblib")
     return session, ca_zip
