@@ -67,7 +67,7 @@ with col2:
      Cus_marital = st.selectbox( 'CD_MARITAL_STATUS',
                      ['S','D','W', 'U', 'M'],
          )
-     )
+     
   
         
         
