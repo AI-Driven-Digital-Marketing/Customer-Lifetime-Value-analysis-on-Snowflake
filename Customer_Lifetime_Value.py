@@ -5,8 +5,8 @@ import streamlit as st
 st.set_page_config(page_title= "Sqlalchemy Query")
 
 st.image(
-    "src/data.jpeg",
-    width = 600,
+    "src/data.jpeg",caption='Query the Data'
+     width = 600,
 )
 
 col1, col2 = st.columns(2,gap = "medium")
