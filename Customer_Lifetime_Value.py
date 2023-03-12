@@ -1,19 +1,23 @@
 import pandas as pd
 import streamlit as st
 
-# st.write('## Introduction')
 # st.write([[1969, '66060','M','U','Low Risk','2 yr Degree', 1]])
-st.set_page_config(page_title= "Customer Lifetime Value")
+st.set_page_config(page_title= "Sqlalchemy Query")
 
 st.image(
     "src/1649251328-maximize-your-clv.webp",
     width = 600,
 )
 
-#st.title("XGBoost model to predict CLV")
-
 col1, col2 = st.columns(2,gap = "medium")
 with col1:
+    model_select = st.radio('Select the Model here:',
+                           [ 'XGBoost','Linear Regression']
+                            #[ 'XGBoost']
+                           )
+
+
+with col2:
     st.markdown('#### Numeric Features')
     Cus_by = st.number_input('Customer Birth Year:', 
                     min_value=1924,
@@ -27,9 +31,6 @@ with col1:
                     value  = 66668,
                     step = 1
                             )
-
-
-with col2:
     st.markdown('#### Categorical Features ')
     Cus_gender = st.selectbox('CD_Gender',
                               ['M', 'F'], 
@@ -55,10 +56,7 @@ with col2:
 col3, col4 = st.columns([8,2],gap = "medium")
 
 with col3:
-    model_select = st.radio('Select the Model here:',
-                           [ 'XGBoost','Linear Regression']
-                            #[ 'XGBoost']
-                           )
+
 with col4:
     submit =  st.button('Submit')
     reset = st.button('Reset ')
