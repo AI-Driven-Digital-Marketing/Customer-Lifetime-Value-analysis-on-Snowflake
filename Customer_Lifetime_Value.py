@@ -95,15 +95,5 @@ with col2:
                      ['0', '1'],
           )
 
-
-
-col3, col4 = st.columns([8,2],gap = "medium")
-
-with col3:
-    model_select = st.radio('Select the Model here:',
-                           [ 'XGBoost','Linear Regression']
-                            #[ 'XGBoost']
-                           )
-with col4:
     submit =  st.button('Submit')
     reset = st.button('Reset ')
