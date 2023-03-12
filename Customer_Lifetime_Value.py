@@ -12,7 +12,7 @@ st.image(
 col1, col2 = st.columns(2,gap = "medium")
 with col1:
     Query_selection = st.radio('Select the Model here:',
-                           [ 'Q1','Q2','Q3','Q4','Q5','Q6']
+                           [ 'Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8']
                             #[ 'XGBoost']
                            )
 
@@ -24,6 +24,7 @@ with col2:
                         min_value=1924,
                         max_value=2020, 
                         help = 'Please type VALID birth Year!!(Range: 1924~2020)'
+                                 
                                 )
     elif Query_selection == 'Q2':
          Cs_zip = st.number_input( 'Customer Zip Code:', 
@@ -32,12 +33,53 @@ with col2:
                     value  = 66668,
                     step = 1
                             )
-    else:
-        st.markdown('#### Categorical Features ')
-        Cus_gender = st.selectbox('CD_Gender',
+    elif Query_selection == 'Q3':
+         st.markdown('#### Categorical Features ')
+         Cus_gender = st.selectbox('CD_Gender',
                                   ['M', 'F'], 
                                   help= 'M: Male, F: Female'
          )
+        
+    elif Query_selection == 'Q4':
+         st.markdown('#### Categorical Features ')
+         Cus_gender = st.selectbox('CD_Gender',
+                                  ['M', 'F'], 
+                                  help= 'M: Male, F: Female'
+         )
+    elif Query_selection == 'Q5':
+     st.markdown('#### Categorical Features ')
+     Cus_gender = st.selectbox('CD_Gender',
+                              ['M', 'F'], 
+                              help= 'M: Male, F: Female'
+     )
+        
+    elif Query_selection == 'Q6':
+     st.markdown('#### Categorical Features ')
+     Cus_gender = st.selectbox('CD_Gender',
+                              ['M', 'F'], 
+                              help= 'M: Male, F: Female'
+     )
+        
+    elif Query_selection == 'Q7':
+     st.markdown('#### Categorical Features ')
+     Cus_gender = st.selectbox('CD_Gender',
+                              ['M', 'F'], 
+                              help= 'M: Male, F: Female'
+     )
+    elif Query_selection == 'Q8':
+     st.markdown('#### Categorical Features ')
+     Cus_gender = st.selectbox('CD_Gender',
+                              ['M', 'F'], 
+                              help= 'M: Male, F: Female'
+     )
+  
+        
+        
+        
+        
+    else:
+        st.markdown('#### Categorical Features ')
+        
 
         Cus_marital = st.selectbox( 'CD_MARITAL_STATUS',
                      ['S','D','W', 'U', 'M'],
