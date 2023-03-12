@@ -12,7 +12,7 @@ st.image(
 col1, col2 = st.columns(2,gap = "medium")
 with col1:
     st.radio('Select the Model here:',
-                           [ 'Q1','Q2'，'Q3','Q4','Q5','Q6']
+                           [ 'Q1','Q2','Q3','Q4','Q5','Q6']
                             #[ 'XGBoost']
                            )
 
