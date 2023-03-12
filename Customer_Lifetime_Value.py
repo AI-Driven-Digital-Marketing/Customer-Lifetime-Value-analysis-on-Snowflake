@@ -5,7 +5,7 @@ import streamlit as st
 st.set_page_config(page_title= "Sqlalchemy Query")
 
 st.image(
-    "src/data.jpeg",caption='Query the Data'
+    "src/data.jpeg",caption='Query the Data',
      width = 600,
 )
 
