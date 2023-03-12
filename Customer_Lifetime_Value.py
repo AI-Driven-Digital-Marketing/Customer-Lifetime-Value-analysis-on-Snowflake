@@ -5,14 +5,14 @@ import streamlit as st
 st.set_page_config(page_title= "Sqlalchemy Query")
 
 st.image(
-    "src/1649251328-maximize-your-clv.webp",
+    "src/data.jpeg",
     width = 600,
 )
 
 col1, col2 = st.columns(2,gap = "medium")
 with col1:
-    model_select = st.radio('Select the Model here:',
-                           [ 'XGBoost','Linear Regression']
+    st.radio('Select the Model here:',
+                           [ 'Q1','Q2'，'Q3','Q4','Q5','Q6']
                             #[ 'XGBoost']
                            )
 
