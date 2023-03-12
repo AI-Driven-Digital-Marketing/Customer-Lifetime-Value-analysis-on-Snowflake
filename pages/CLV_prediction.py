@@ -18,7 +18,7 @@ st.set_page_config(page_title= "Customer Lifetime Value")
 
 st.image(
     "src/1649251328-maximize-your-clv.webp",
-    width = 400,
+    width = 500,
 )
 
 #st.title("XGBoost model to predict CLV")
