@@ -25,7 +25,7 @@ with col2:
                         max_value=2020, 
                         help = 'Please type VALID birth Year!!(Range: 1924~2020)'
                                 )
-    elif
+    elif Query_selection == 'Q2'
          Cs_zip = st.number_input( 'Customer Zip Code:', 
                     min_value= 601, 
                     max_value= 99981,
