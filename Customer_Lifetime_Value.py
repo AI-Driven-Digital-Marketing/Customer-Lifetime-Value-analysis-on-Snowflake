@@ -13,6 +13,7 @@ st.image(
 col1, col2 = st.columns(2,gap = "medium")
 with col1:
     Query_selection = st.selectbox('Select the Query here:',
+#   Query_selection = st.radio('Select the Query here:',               
                            [ 'Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8']
                            )
 
