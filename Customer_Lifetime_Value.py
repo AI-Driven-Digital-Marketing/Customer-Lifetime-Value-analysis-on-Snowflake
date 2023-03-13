@@ -86,8 +86,8 @@ with col2:
         st.markdown('Please Select your Query')
 
     
-    submit =  st.button('Submit')
-    reset = st.button('Reset ')
+#     submit =  st.button('Submit')
+#     reset = st.button('Reset ')
     
     
     
