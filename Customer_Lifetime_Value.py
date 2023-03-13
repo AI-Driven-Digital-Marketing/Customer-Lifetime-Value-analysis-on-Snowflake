@@ -22,7 +22,7 @@ with col2:
         st.markdown('#### Numeric Features')
         form = st.form(key='my-form')
         name = form.text_input('Enter your name')
-        Cus_by = st.number_input('Customer Birth Year:', 
+        Cus_by = form.number_input('Customer Birth Year:', 
                         min_value=1924,
                         max_value=2020, 
                         help = 'Please type VALID birth Year!!(Range: 1924~2020)'
