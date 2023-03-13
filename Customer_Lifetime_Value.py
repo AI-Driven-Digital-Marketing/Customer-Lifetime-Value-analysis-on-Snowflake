@@ -20,12 +20,20 @@ with col1:
 with col2:
     if Query_selection == 'Q1':
         st.markdown('#### Numeric Features')
+        form = st.form(key='my-form')
+        name = form.text_input('Enter your name')
         Cus_by = st.number_input('Customer Birth Year:', 
                         min_value=1924,
                         max_value=2020, 
                         help = 'Please type VALID birth Year!!(Range: 1924~2020)'
                                  
                                 )
+        
+        submit = form.form_submit_button('Submit')
+
+        st.write('Press submit to have your name printed below')
+     
+
     elif Query_selection == 'Q2':
          Cs_zip = st.number_input( 'Customer Zip Code:', 
                     min_value= 601, 
