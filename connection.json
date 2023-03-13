@@ -1,9 +1,9 @@
 {
-  "account"   : "ozb65844.us-east-1",
-  "user"      : "Rayden",
-  "password"  : "Xrd93123875",
+  "account"   : "tzb36953.us-east-1",
+  "user"      : "GreenTomato",
+  "password"  : "SnowFlake1234!",
   "role"      : "ACCOUNTADMIN",
   "warehouse" : "COMPUTE_WH",
-  "database"  : "FOOD",
-  "schema"    : "PUBLIC"
+  "database"  : "SNOWFLAKE-SAMPLE-DATA",
+  "schema"    : "TPCDS_SF10TCL"
 }
