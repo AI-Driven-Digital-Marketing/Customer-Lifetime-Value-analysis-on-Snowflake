@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 import streamlit as st
 
 # st.write([[1969, '66060','M','U','Low Risk','2 yr Degree', 1]])
@@ -79,3 +80,8 @@ with col2:
     
     submit =  st.button('Submit')
     reset = st.button('Reset ')
+    
+    
+    
+    
+   
