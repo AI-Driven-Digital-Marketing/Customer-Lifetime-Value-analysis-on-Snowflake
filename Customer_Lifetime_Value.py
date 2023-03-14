@@ -87,7 +87,7 @@ with col1:
                                         max_value=1250,
                                         value = 128,
                                         help = 'Input value not in range.(Range: 1~1250)')
-        aggc_input = form.selectbox('AGGC ',var_json['q3_aggc'])
+#         aggc_input = form.selectbox('AGGC ',var_json['q3_aggc'])
         
         submit = form.form_submit_button('Submit')
         
