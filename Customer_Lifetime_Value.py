@@ -72,6 +72,10 @@ with col1:
         
         
     elif Query_selection == 'Q3':
+        '''
+        ### Q3: Report the total extended sales price per item brand of a specific manufacturer for all sales in a specific month
+        of the year.
+        '''
         form = st.form(key='Q3-form')
         month_input = form.number_input('month',
                                         min_value=1,
