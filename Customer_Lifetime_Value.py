@@ -72,7 +72,25 @@ with col1:
         
         
     elif Query_selection == 'Q3':
-        pass
+        form = st.form(key='Q3-form')
+        month_input = form.number_input('month',
+                                        min_value=1,
+                                        max_value=12,
+                                        value = 11,
+                                        help = 'Input value not in range.(Range: 1~12)')
+        MANUFACT_input = form.number_input('MANUFACT',
+                                        min_value=1,
+                                        max_value=1250,
+                                        value = 128,
+                                        help = 'Input value not in range.(Range: 1~1250)')
+#         aggc_input = form.selectbox('AGGC ',var_json['q3_aggc'])
+        '''
+        Qualification Substitution Variable:
+        MONTH.01=11
+        MANUFACT =128
+        AGGC = ss_ext_sales_price
+        '''
+        submit = form.form_submit_button('Submit')
         
     elif Query_selection == 'Q4':
         pass
@@ -212,6 +230,28 @@ limit 1000;
 '''
         st.write(pd.read_sql_query(q2 ,engine))
     elif Query_selection == 'Q3' and submit:
+#         st.write(pd.read_sql_query('select * from WEB_SALES limit 10;',engine))
+#         q3 = f'''
+#         SELECT dt.d_year,
+#        item.i_brand_id brand_id,
+#        item.i_brand brand,
+#        sum(ss_ext_sales_price) sum_agg
+# FROM date_dim dt,
+#      store_sales,
+#      item
+# WHERE dt.d_date_sk = store_sales.ss_sold_date_sk
+#   AND store_sales.ss_item_sk = item.i_item_sk
+#   AND item.i_manufact_id = 128
+#   AND dt.d_moy=11
+# GROUP BY dt.d_year,
+#          item.i_brand,
+#          item.i_brand_id
+# ORDER BY dt.d_year,
+#          sum_agg DESC,
+#          brand_id
+# LIMIT 100;
+#         '''
+#         st.write(pd.read_sql_query(q3,engine))
         pass
     elif Query_selection == 'Q4' and submit:
         pass
