@@ -1,6 +1,4 @@
 name: SNPark
-channels:
-  - snowflake
 dependencies:
   - snowflake-snowpark-python
   - numpy
@@ -10,4 +8,5 @@ dependencies:
   - seaborn
   - joblib
   - pip:
-    - snowflake-sqlalchemy
+    - snowflake-sqlalchemy==1.4.6
+    - SQLAlchemy==1.4.32
