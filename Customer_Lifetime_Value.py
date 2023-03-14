@@ -88,13 +88,14 @@ with col1:
                                         value = 128,
                                         help = 'Input value not in range.(Range: 1~1250)')
         aggc_input = form.selectbox('AGGC ',var_json['q3_aggc'])
+        submit = form.form_submit_button('Submit')
         '''
         Qualification Substitution Variable:
         MONTH.01=11
         MANUFACT =128
         AGGC = ss_ext_sales_price
         '''
-        submit = form.form_submit_button('Submit')
+        
         
     elif Query_selection == 'Q4':
         pass
