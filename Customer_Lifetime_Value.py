@@ -237,30 +237,31 @@ ORDER BY d_week_seq1
 limit 1000;
 '''
         st.write(pd.read_sql_query(q2 ,engine))
+        
     elif Query_selection == 'Q3' and submit:
 #         st.write(pd.read_sql_query('select * from WEB_SALES limit 10;',engine))
-#         q3 = f'''
-#         SELECT dt.d_year,
-#        item.i_brand_id brand_id,
-#        item.i_brand brand,
-#        sum(ss_ext_sales_price) sum_agg
-# FROM date_dim dt,
-#      store_sales,
-#      item
-# WHERE dt.d_date_sk = store_sales.ss_sold_date_sk
-#   AND store_sales.ss_item_sk = item.i_item_sk
-#   AND item.i_manufact_id = 128
-#   AND dt.d_moy=11
-# GROUP BY dt.d_year,
-#          item.i_brand,
-#          item.i_brand_id
-# ORDER BY dt.d_year,
-#          sum_agg DESC,
-#          brand_id
-# LIMIT 100;
-#         '''
-#         st.write(pd.read_sql_query(q3,engine))
-        pass
+        q3 = f'''
+        SELECT dt.d_year,
+       item.i_brand_id brand_id,
+       item.i_brand brand,
+       sum(ss_ext_sales_price) sum_agg
+FROM date_dim dt,
+     store_sales,
+     item
+WHERE dt.d_date_sk = store_sales.ss_sold_date_sk
+  AND store_sales.ss_item_sk = {aggc_input}
+  AND item.i_manufact_id = {MANUFACT_input}
+  AND dt.d_moy={month_input}
+GROUP BY dt.d_year,
+         item.i_brand,
+         item.i_brand_id
+ORDER BY dt.d_year,
+         sum_agg DESC,
+         brand_id
+LIMIT 100;
+        '''
+        st.write(pd.read_sql_query(q3,engine))
+        
     elif Query_selection == 'Q4' and submit:
         pass
     elif Query_selection == 'Q5' and submit:
