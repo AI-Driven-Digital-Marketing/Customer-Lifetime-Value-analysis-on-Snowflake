@@ -95,7 +95,7 @@ with col1:
                                             "ss_wholesale_cost","ss_list_price",
                                             "ss_sales_price","ss_ext_discount_amt","ss_ext_sales_price",
                                             "ss_ext_wholesale_cost","ss_ext_list_price","ss_ext_tax","ss_coupon_amt",
-                                            "ss_net_paid","ss_net_paid_inc_tax","ss_net_profit"])
+                                            "ss_net_paid","ss_net_paid_inc_tax","ss_net_profit"],help = 'key= ss_ext_sales_price')
         
         submit = form.form_submit_button('Submit')
         
