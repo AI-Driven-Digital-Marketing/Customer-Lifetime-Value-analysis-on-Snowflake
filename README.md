@@ -15,7 +15,7 @@
 ## 1.Overall Architecture
 
 <div align=center>
-<img src="Workflow.png" width="500px">
+<img src="Workflow.png" width="700px">
 </div>
 
 
