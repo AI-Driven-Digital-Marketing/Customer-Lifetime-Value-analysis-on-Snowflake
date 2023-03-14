@@ -77,19 +77,19 @@ with col1:
         of the year.
         '''
         form = st.form(key='Q3-form')
-        month_input = form.number_input('month',
+        month_input = form.number_input('Month',
                                         min_value=1,
                                         max_value=12,
                                         value = 11,
-                                        help = 'Input value not in range.(Range: 1~12)')
+                                        help = 'Input value should in this range.(Range: 1~12)')
         
         MANUFACT_input = form.number_input('MANUFACT',
                                         min_value=12,
                                         max_value=998,
                                         value = 128,
-                                        help = 'Input value not in range.(Range: 1~1250)')
+                                        help = 'Input value should in this range.(Range: 12~998)')
         
-        aggc_input = form.selectbox('AGGC', var_json['q3_aggc'])
+        aggc_input = form.selectbox('AGGC',var_json['q3_aggc'])
         
         submit = form.form_submit_button('Submit')
         
