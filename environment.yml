@@ -1,4 +1,4 @@
-name: SNPark
+name: SFsql
 dependencies:
   - snowflake-snowpark-python
   - numpy
