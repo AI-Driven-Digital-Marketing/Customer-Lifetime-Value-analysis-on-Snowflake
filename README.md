@@ -1,24 +1,23 @@
-# Project2 Cohort-Analysis-on-snowflake
+# Project3 Snowpark Python - TPC DS  - Customer Lifetime Value
 [![author](https://img.shields.io/badge/Author-Rayden_Xu-blue.svg)](https://www.linkedin.com/in/rundong-xu-269012230/) 
 [![author](https://img.shields.io/badge/Author-Binghui_Lai-blue.svg)](https://www.linkedin.com/in/binghui-lai/) 
 [![author](https://img.shields.io/badge/Author-Ziwei_Duan-blue.svg)](https://www.linkedin.com/in/ziwei-duan-create/) 
 
 ## Quick Portral
-### Project2:
-| **--->** [1.Script](Analysis.ipynb) |
+### Project3:
+| **--->** [1.Script](TCP-Analysis-writeCode.ipynb) |
 
-| **--->** [2.Front-end](pages/Food_Cohort_Analysis.py) |
+| **--->** [2.Front-end](Customer_Lifetime_Value.py) |
 
-| **--->** [2.Website by Streamlit](https://dduan-zw-cohort-analysis-on-snowflake-main-csxkkt.streamlit.app/Food_Cohort_Analysis) |
+| **--->** [2.Website by Streamlit](https://dduan-zw-tcp-ds-big-data-explore-customer-lifetime-value-izm9gb.streamlit.app/) |
 
 
 ## 1.Overall Architecture
 
 <div align=center>
-<img src="workflowHW3_part1.html" width="500px">
+<img src="Workflow.png" width="500px">
 </div>
 
-# Snowpark Python - TPC DS  - Customer Lifetime Value
 
 This demo utilizes the [TPC DS sample](https://docs.snowflake.com/en/user-guide/sample-data-tpcds.html) dataset that is made available via  Snowflake share. It can be configured to run on either the 10 TB or the 100 TB version of the dataset. 
 
