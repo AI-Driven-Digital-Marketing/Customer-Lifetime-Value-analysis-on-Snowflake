@@ -35,8 +35,9 @@ st.image(
 )
 
 # input GUI for user
-_,col1,_ = st.columns([1,8,1])
-_,col2,_ = st.columns([1,8,1])
+# _,col1,_ = st.columns([1,8,1])
+# _,col2,_ = st.columns([1,8,1])
+col1, col2 = st.columns(2,gap = "medium")
 
 with col1:
     # lai's contribution here
@@ -55,9 +56,9 @@ with col1:
         state_input = form.selectbox('State', 
                                      var_json['q1_state']
                                      )
+        
         agg_input = form.selectbox('Aggreagation Column',var_json['q1_agg'])
 
-        
         submit = form.form_submit_button('Submit')
 
     elif Query_selection == 'Q2':
@@ -97,17 +98,18 @@ with col2:
     if Query_selection == 'Q1' and submit:
         q1_state = state_input
         q1_year = year_input
+        q1_agg = agg_input
         q1 = '''with customer_total_return as
                 (select sr_customer_sk as ctr_customer_sk
                 ,sr_store_sk as ctr_store_sk
-                ,sum(SR_RETURN_AMT) as ctr_total_return
+                ,sum({agg}) as ctr_total_return
                 from store_returns
                 ,date_dim
                 where sr_returned_date_sk = d_date_sk
                 and d_year = {year}
                 group by sr_customer_sk
                 ,sr_store_sk
-                limit 200)
+                limit 500)
                  select  c_customer_id
                 from customer_total_return ctr1
                 ,store
@@ -119,7 +121,7 @@ with col2:
                 and s_state = \'{state}\'
                 and ctr1.ctr_customer_sk = c_customer_sk
                 order by c_customer_id
-                 limit 100;'''.format(year = q1_year, state = q1_state)
+                 limit 100;'''.format(year = q1_year, state = q1_state, agg = q1_agg)
         
         st.write(pd.read_sql_query(q1 ,engine))
     
