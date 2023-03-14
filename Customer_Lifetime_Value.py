@@ -84,8 +84,8 @@ with col1:
                                         help = 'Input value not in range.(Range: 1~12)')
         
         MANUFACT_input = form.number_input('MANUFACT',
-                                        min_value=1,
-                                        max_value=1250,
+                                        min_value=12,
+                                        max_value=998,
                                         value = 128,
                                         help = 'Input value not in range.(Range: 1~1250)')
         
