@@ -1,6 +1,4 @@
 name: SNPark
-channels:
-  - snowflake
 dependencies:
   - snowflake-snowpark-python
   - numpy
