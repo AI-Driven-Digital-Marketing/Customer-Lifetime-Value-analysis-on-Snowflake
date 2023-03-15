@@ -22,12 +22,12 @@ def initialize():
     )
     
     connection = engine.connect()
-    pd.read_sql_query('''USE SCHEMA SNOWFLAKE_SAMPLE_DATA.TPCDS_SF10TCL;''',engine)
+    # pd.read_sql_query('''USE SCHEMA SNOWFLAKE_SAMPLE_DATA.TPCDS_SF10TCL;''',engine)
     var_json = json.load(open('var_store.json'))
     return engine, var_json
 
 engine, var_json = initialize()
-
+pd.read_sql_query('''USE SCHEMA SNOWFLAKE_SAMPLE_DATA.TPCDS_SF10TCL;''',engine)
 st.image(
     "src/data.jpeg",
     caption='Query the Data',
