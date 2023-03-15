@@ -115,9 +115,9 @@ with col1:
         
     elif Query_selection == 'Q60':
          '''
-        Q60: What is the monthly sales amount for a specific month in a specific year, for items in a specific category,
-        purchased by customers residing in a specific time zone. Group sales by item and sort output by sales amount.
-        '''
+         Q60: What is the monthly sales amount for a specific month in a specific year, for items in a specific category,
+            purchased by customers residing in a specific time zone. Group sales by item and sort output by sales amount.
+         '''
         form = st.form(key='Q60-form')
         month_input = form.number_input('Month',
                                         min_value=1,
