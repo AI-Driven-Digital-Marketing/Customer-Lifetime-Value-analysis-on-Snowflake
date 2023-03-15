@@ -119,6 +119,7 @@ with col1:
             purchased by customers residing in a specific time zone. Group sales by item and sort output by sales amount.
          '''
         form = st.form(key='Q60-form')
+        
         month_input = form.number_input('Month',
                                         min_value=1,
                                         max_value=12,
