@@ -117,17 +117,17 @@ with col1:
         month_input = form.number_input('Month',
                                             min_value=1,
                                             max_value=12,
-                                            value = 11,
+                                            value = 9,
                                             help = 'Input value should in this range.(Range: 1~12)')
 
         year_input = form.number_input('year',
                                             min_value=1900,
                                             max_value=2100,
-                                            value  = 2000,
+                                            value  = 1998,
                                             help = 'Input value not in range.(Range: 1900~2100)')
 
-        category_input = form.selectbox('I_Category',["Sports","Children","Women",'None',
-                                                              "Home","Electronics","Jewelry","Men","Shoes","Music","Books"])
+        category_input = form.selectbox('I_Category',["Music","Sports","Children","Women",'None',
+                                                              "Home","Electronics","Jewelry","Men","Shoes","Books"])
         submit = form.form_submit_button('Submit')
         
     else:
@@ -303,7 +303,7 @@ LIMIT 100;'''
             AND d_moy = {month_input}
             AND ss_addr_sk = ca_address_sk
             AND ca_gmt_offset = -5
-        GROUP BY i_item_id),
+        GROUP BY i_item_id limit 1000),
             cs AS
         (SELECT i_item_id,
                 sum(cs_ext_sales_price) total_sales
@@ -314,14 +314,14 @@ LIMIT 100;'''
         WHERE i_item_id IN
             (SELECT i_item_id
                 FROM item
-                WHERE i_category ={category_input})
+                WHERE i_category ={category_input} limit 1000)
             AND cs_item_sk = i_item_sk
             AND cs_sold_date_sk = d_date_sk
             AND d_year = {year_input}
             AND d_moy = {month_input}
             AND cs_bill_addr_sk = ca_address_sk
             AND ca_gmt_offset = -5
-        GROUP BY i_item_id),
+        GROUP BY i_item_id ),
             ws AS
         (SELECT i_item_id,
                 sum(ws_ext_sales_price) total_sales
