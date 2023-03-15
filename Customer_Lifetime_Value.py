@@ -285,7 +285,77 @@ LIMIT 100;'''
     elif Query_selection == 'Q43' and submit:
         pass
     elif Query_selection == 'Q60' and submit:
-        pass
+        q60 = f'''
+                WITH ss AS
+        (SELECT i_item_id,
+                sum(ss_ext_sales_price) total_sales
+        FROM store_sales,
+                date_dim,
+                customer_address,
+                item
+        WHERE i_item_id IN
+            (SELECT i_item_id
+                FROM item
+                WHERE i_category ={category_input})
+            AND ss_item_sk = i_item_sk
+            AND ss_sold_date_sk = d_date_sk
+            AND d_year = {year_input}
+            AND d_moy = {month_input}
+            AND ss_addr_sk = ca_address_sk
+            AND ca_gmt_offset = -5
+        GROUP BY i_item_id),
+            cs AS
+        (SELECT i_item_id,
+                sum(cs_ext_sales_price) total_sales
+        FROM catalog_sales,
+                date_dim,
+                customer_address,
+                item
+        WHERE i_item_id IN
+            (SELECT i_item_id
+                FROM item
+                WHERE i_category ={category_input})
+            AND cs_item_sk = i_item_sk
+            AND cs_sold_date_sk = d_date_sk
+            AND d_year = {year_input}
+            AND d_moy = {month_input}
+            AND cs_bill_addr_sk = ca_address_sk
+            AND ca_gmt_offset = -5
+        GROUP BY i_item_id),
+            ws AS
+        (SELECT i_item_id,
+                sum(ws_ext_sales_price) total_sales
+        FROM web_sales,
+                date_dim,
+                customer_address,
+                item
+        WHERE i_item_id IN
+            (SELECT i_item_id
+                FROM item
+                WHERE i_category = {category_input} limit 1000)
+            AND ws_item_sk = i_item_sk
+            AND ws_sold_date_sk = d_date_sk
+            AND d_year = {year_input}
+            AND d_moy = {month_input}
+            AND ws_bill_addr_sk = ca_address_sk
+            AND ca_gmt_offset = -5
+        GROUP BY i_item_id
+        limit 1000)
+        SELECT i_item_id,
+            sum(total_sales) total_sales
+        FROM
+        (SELECT *
+        FROM ss
+        UNION ALL SELECT *
+        FROM cs
+        UNION ALL SELECT *
+        FROM ws limit 1000) tmp1
+        GROUP BY i_item_id
+        ORDER BY i_item_id,
+                total_sales
+        LIMIT 100;        
+        '''
+        st.write(pd.read_sql_query(q60,engine))
     elif submit:
         st.write('Wrong Question Number.')
 
