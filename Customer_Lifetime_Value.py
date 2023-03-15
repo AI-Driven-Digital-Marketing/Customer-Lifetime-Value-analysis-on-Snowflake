@@ -114,27 +114,28 @@ with col1:
         pass
         
     elif Query_selection == 'Q60':
-             '''
-             Q60: What is the monthly sales amount for a specific month in a specific year, for items in a specific category,
-                purchased by customers residing in a specific time zone. Group sales by item and sort output by sales amount.
-             '''
-            form = st.form(key='Q60-form')
+        pass
+#              '''
+#              Q60: What is the monthly sales amount for a specific month in a specific year, for items in a specific category,
+#                 purchased by customers residing in a specific time zone. Group sales by item and sort output by sales amount.
+#              '''
+#             form = st.form(key='Q60-form')
 
-            month_input = form.number_input('Month',
-                                            min_value=1,
-                                            max_value=12,
-                                            value = 11,
-                                            help = 'Input value should in this range.(Range: 1~12)')
+#             month_input = form.number_input('Month',
+#                                             min_value=1,
+#                                             max_value=12,
+#                                             value = 11,
+#                                             help = 'Input value should in this range.(Range: 1~12)')
 
-            year_input = form.number_input('year',
-                                            min_value=1900,
-                                            max_value=2100,
-                                            value  = 2000,
-                                            help = 'Input value not in range.(Range: 1900~2100)')
+#             year_input = form.number_input('year',
+#                                             min_value=1900,
+#                                             max_value=2100,
+#                                             value  = 2000,
+#                                             help = 'Input value not in range.(Range: 1900~2100)')
 
-            category_input = form.selectbox('I_Category',var_json['q60_c'])
+#             category_input = form.selectbox('I_Category',var_json['q60_c'])
 
-            submit = form.form_submit_button('Submit')
+#             submit = form.form_submit_button('Submit')
         
     else:
         st.markdown('Please Select your Query')
