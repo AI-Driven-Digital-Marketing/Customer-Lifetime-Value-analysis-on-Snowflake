@@ -126,7 +126,7 @@ with col1:
                                             value  = 2000,
                                             help = 'Input value not in range.(Range: 1900~2100)')
 
-        category_input = form.selectbox('I_Category',var_json["Sports","Children","Women",'None',
+        category_input = form.selectbox('I_Category',["Sports","Children","Women",'None',
                                                               "Home","Electronics","Jewelry","Men","Shoes","Music","Books"])
         submit = form.form_submit_button('Submit')
         
