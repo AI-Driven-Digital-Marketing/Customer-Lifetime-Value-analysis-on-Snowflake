@@ -42,7 +42,7 @@ col1, col2 = st.columns(2,gap = "medium")
 with col1:
     # lai's contribution here
     Query_selection = st.selectbox('Select the Query here:',
-                            [ 'Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8']
+                            [ 'Q1','Q2','Q3','Q4','Q5','Q6','Q43','Q60']
                            )
     st.markdown('#### Features')
     if Query_selection == 'Q1':
@@ -89,14 +89,7 @@ with col1:
                                         value = 128,
                                         help = 'Input value should in this range.(Range: 12~998)')
         
-        aggc_input = form.selectbox('AGGC',var_json['q3_aggc'])
-#                                     ["ss_sold_date_sk","ss_sold_time_sk","ss_item_sk","ss_customer_sk",
-#                                             "ss_cdemo_sk","ss_hdemo_sk","ss_addr_sk","ss_store_sk",
-#                                             "ss_promo_sk","ss_ticket_number","ss_quantity",
-#                                             "ss_wholesale_cost","ss_list_price",
-#                                             "ss_sales_price","ss_ext_discount_amt","ss_ext_sales_price",
-#                                             "ss_ext_wholesale_cost","ss_ext_list_price","ss_ext_tax","ss_coupon_amt",
-#                                             "ss_net_paid","ss_net_paid_inc_tax","ss_net_profit"],help = 'key= ss_ext_sales_price')
+        aggc_input = form.selectbox('AGGC',var_json['q3_aggc'])                
         
         submit = form.form_submit_button('Submit')
         
@@ -107,14 +100,35 @@ with col1:
     elif Query_selection == 'Q5':
         pass
         
-    elif Query_selection == 'Q6':
+    elif Query_selection == 'Q40':
         pass
         
-    elif Query_selection == 'Q7':
+    elif Query_selection == 'Q43':
         pass
         
-    elif Query_selection == 'Q8':
-        pass
+    elif Query_selection == 'Q60':
+        
+        '''
+        Q60: What is the monthly sales amount for a specific month in a specific year, for items in a specific category,
+        purchased by customers residing in a specific time zone. Group sales by item and sort output by sales amount.
+        '''
+        form = st.form(key='Q60-form')
+
+        month_input = form.number_input('Month',
+                                            min_value=1,
+                                            max_value=12,
+                                            value = 11,
+                                            help = 'Input value should in this range.(Range: 1~12)')
+
+        year_input = form.number_input('year',
+                                            min_value=1900,
+                                            max_value=2100,
+                                            value  = 2000,
+                                            help = 'Input value not in range.(Range: 1900~2100)')
+
+        category_input = form.selectbox('I_Category',var_json['q60_c'])
+
+        submit = form.form_submit_button('Submit')
         
     else:
         st.markdown('Please Select your Query')
@@ -268,9 +282,9 @@ LIMIT 100;'''
         pass
     elif Query_selection == 'Q6' and submit:
         pass
-    elif Query_selection == 'Q7' and submit:
+    elif Query_selection == 'Q43' and submit:
         pass
-    elif Query_selection == 'Q8' and submit:
+    elif Query_selection == 'Q60' and submit:
         pass
     elif submit:
         st.write('Wrong Question Number.')
