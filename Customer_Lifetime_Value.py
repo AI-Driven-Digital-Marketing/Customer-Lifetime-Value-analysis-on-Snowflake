@@ -135,7 +135,7 @@ with col1:
 
         category_input = form.selectbox('I_Category',var_json['q60_c'])
 
-         submit = form.form_submit_button('Submit')
+        submit = form.form_submit_button('Submit')
         
     else:
         st.markdown('Please Select your Query')
