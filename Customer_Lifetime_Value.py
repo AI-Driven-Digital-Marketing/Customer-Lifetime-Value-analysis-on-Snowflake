@@ -42,7 +42,7 @@ col1, col2 = st.columns(2,gap = "medium")
 with col1:
     # lai's contribution here
     Query_selection = st.selectbox('Select the Query here:',
-                            [ 'Q1','Q2','Q3','Q4','Q5','Q6','Q7','Q8']
+                            [ 'Q1','Q2','Q3','Q4','Q5','Q6','Q43','Q60']
                            )
     st.markdown('#### Features')
     if Query_selection == 'Q1':
@@ -121,21 +121,21 @@ with col1:
         '''
         form = st.form(key='Q60-form')
 
-#             month_input = form.number_input('Month',
-#                                             min_value=1,
-#                                             max_value=12,
-#                                             value = 11,
-#                                             help = 'Input value should in this range.(Range: 1~12)')
+        month_input = form.number_input('Month',
+                                            min_value=1,
+                                            max_value=12,
+                                            value = 11,
+                                            help = 'Input value should in this range.(Range: 1~12)')
 
-#             year_input = form.number_input('year',
-#                                             min_value=1900,
-#                                             max_value=2100,
-#                                             value  = 2000,
-#                                             help = 'Input value not in range.(Range: 1900~2100)')
+        year_input = form.number_input('year',
+                                            min_value=1900,
+                                            max_value=2100,
+                                            value  = 2000,
+                                            help = 'Input value not in range.(Range: 1900~2100)')
 
-#             category_input = form.selectbox('I_Category',var_json['q60_c'])
+        category_input = form.selectbox('I_Category',var_json['q60_c'])
 
-#             submit = form.form_submit_button('Submit')
+        submit = form.form_submit_button('Submit')
         
     else:
         st.markdown('Please Select your Query')
@@ -289,9 +289,9 @@ LIMIT 100;'''
         pass
     elif Query_selection == 'Q6' and submit:
         pass
-    elif Query_selection == 'Q7' and submit:
+    elif Query_selection == 'Q43' and submit:
         pass
-    elif Query_selection == 'Q8' and submit:
+    elif Query_selection == 'Q60' and submit:
         pass
     elif submit:
         st.write('Wrong Question Number.')
