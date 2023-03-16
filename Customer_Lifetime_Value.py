@@ -546,7 +546,7 @@ LIMIT 100;
         st.snow()
     elif Query_selection == 'Q60' and submit:
         q60 = f'''
-                WITH ss AS
+               WITH ss AS
   (SELECT i_item_id,
           sum(ss_ext_sales_price) total_sales
    FROM store_sales,
@@ -556,14 +556,14 @@ LIMIT 100;
    WHERE i_item_id IN
        (SELECT i_item_id
         FROM item
-        WHERE i_category = {category_input}  limit 1000 )
+        WHERE i_category ='Music'  limit 1000 )
      AND ss_item_sk = i_item_sk
      AND ss_sold_date_sk = d_date_sk
-     AND d_year = {year_input}
-     AND d_moy = {month_input}
+     AND d_year = 1998
+     AND d_moy = 9
      AND ss_addr_sk = ca_address_sk
      AND ca_gmt_offset = -5
-   GROUP BY i_item_id  limit 500  ),
+   GROUP BY i_item_id  limit 1000 ),
 
 
 
@@ -577,14 +577,14 @@ LIMIT 100;
    WHERE i_item_id IN
        (SELECT i_item_id
         FROM item
-        WHERE i_category = {category_input}  limit 1000 )
+        WHERE i_category ='Music'  limit 1000 )
      AND cs_item_sk = i_item_sk
      AND cs_sold_date_sk = d_date_sk
-     AND d_year = {year_input}
-     AND d_moy = {month_input}
+     AND d_year = 1998
+     AND d_moy = 9
      AND cs_bill_addr_sk = ca_address_sk
      AND ca_gmt_offset = -5
-   GROUP BY i_item_id  limit  500 ),
+   GROUP BY i_item_id  limit 1000),
 
 
      ws AS
@@ -597,14 +597,14 @@ LIMIT 100;
    WHERE i_item_id IN
        (SELECT i_item_id
         FROM item
-        WHERE i_category = {category_input} limit 1000)
+        WHERE i_category = 'Music' limit 1000)
      AND ws_item_sk = i_item_sk
      AND ws_sold_date_sk = d_date_sk
-     AND d_year = {year_input}
-     AND d_moy = {month_input}
+     AND d_year = 1998
+     AND d_moy = 9
      AND ws_bill_addr_sk = ca_address_sk
      AND ca_gmt_offset = -5
-   GROUP BY i_item_id  limit 500 )
+   GROUP BY i_item_id  limit 1000 )
 
 
 SELECT i_item_id,
