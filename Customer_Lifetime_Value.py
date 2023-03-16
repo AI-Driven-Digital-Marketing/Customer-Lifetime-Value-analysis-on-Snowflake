@@ -1,9 +1,10 @@
-
 import pandas as pd
 import numpy as np
 import streamlit as st
 import json
 from sqlalchemy import create_engine
+from datetime import date, timedelta
+import time
 st.set_page_config(page_title= "Sqlalchemy Query")
 
 # initialize the engine and read chached data from json files
@@ -36,14 +37,14 @@ st.image(
 )
 
 # input GUI for user
-# _,col1,_ = st.columns([1,8,1])
-# _,col2,_ = st.columns([1,8,1])
-col1, col2 = st.columns(2,gap = "medium")
+_,col1,_ = st.columns([1,8,1])
+_,col2,_ = st.columns([1,8,1])
+#col1, col2 = st.columns(2,gap = "medium")
 
 with col1:
-    # lai's contribution here
+    
     Query_selection = st.selectbox('Select the Query here:',
-                            [ 'Q1','Q2','Q3','Q4','Q5','Q6','Q43','Q60']
+                            [ 'Q1','Q2','Q3','Q4','Q5','Q40','Q43','Q60']
                            )
     st.markdown('#### Features')
     if Query_selection == 'Q1':
@@ -107,13 +108,29 @@ with col1:
         
         submit = form.form_submit_button('Submit')
         
-        pass
-        
     elif Query_selection == 'Q5':
-        pass
+        
+        form = st.form(key='Q40-form')
+        SALES_DATE = form.date_input("Select sales date here:",
+                                   date(2000, 3, 11),
+                                     date(1900, 1, 2),
+                                     date(2100, 1, 1),
+                                     help = 'accept range from 1900-01-02 to 2100-01-01'
+                                    )
+        submit = form.form_submit_button('Submit')        
         
     elif Query_selection == 'Q40':
-        pass
+        '''Compute the impact of an item price change on the sales by computing\
+        the total sales for items in a 30 day period before and after the price change.\
+        Group the items by location of warehouse where they were delivered from.'''
+        form = st.form(key='Q40-form')
+        SALES_DATE = form.date_input("Select sales date here:",
+                                   date(2000, 3, 11),
+                                     date(1900, 1, 2),
+                                     date(2100, 1, 1),
+                                     help = 'accept range from 1900-01-02 to 2100-01-01'
+                                    )
+        submit = form.form_submit_button('Submit')
         
     elif Query_selection == 'Q43':
         pass
@@ -175,12 +192,12 @@ with col2:
                 and ctr1.ctr_customer_sk = c_customer_sk
                 order by c_customer_id
                  limit 100;'''.format(year = q1_year, state = q1_state, agg = q1_agg)
-        
-        st.write(pd.read_sql_query(q1 ,engine))
-    
+        with st.spinner('Wait for it...'):
+            st.write(pd.read_sql_query(q1 ,engine))
+        st.snow()
     elif Query_selection == 'Q2' and submit:
         # the query runs super slow
-        st.write(pd.read_sql_query('select * from WEB_SALES limit 10;',engine))
+        
         q2 = f'''WITH wscs AS
   (SELECT sold_date_sk,
           sales_price
@@ -263,8 +280,10 @@ WHERE d_week_seq1 = d_week_seq2-53
 ORDER BY d_week_seq1
 limit 1000;
 '''
-        st.write(pd.read_sql_query(q2 ,engine))
         
+        with st.spinner('Wait for it...'):
+            st.write(pd.read_sql_query(q2 ,engine))
+        st.snow()
     elif Query_selection == 'Q3' and submit:
 #         st.write(pd.read_sql_query('select * from WEB_SALES limit 10;',engine))
         q3 = f'''
@@ -286,8 +305,10 @@ ORDER BY dt.d_year,
          sum_agg DESC,
          brand_id
 LIMIT 100;'''
-        st.write(pd.read_sql_query(q3,engine))
         
+        with st.spinner('Wait for it...'):
+            st.write(pd.read_sql_query(q3,engine))
+        st.snow()
     elif Query_selection == 'Q4' and submit:
         agg_input = 'c_'+agg_input
         alis_input = 'customer_'+agg_input
@@ -412,13 +433,49 @@ ORDER BY t_s_secyear.customer_id,
          t_s_secyear.customer_preferred_cust_flag
 LIMIT 100;'''
         q4 = q4.replace('c_preferred_cust_flag', agg_input).replace('customer_preferred_cust_flag', alis_input).replace('2001', str(year_input))
-        pd.read_sql_query(q4, engine)
-        
-        pass
+        with st.spinner('Wait for it...'):
+            st.write(pd.read_sql_query(q4,engine))
+        st.snow()
     elif Query_selection == 'Q5' and submit:
-        pass
-    elif Query_selection == 'Q6' and submit:
-        pass
+        with open('src/05.txt', 'r') as file:
+            q5 = file.read()
+        q5 = q5.replace('2000-08-23', str(SALES_DATE)).replace('2000-09-06',str(SALES_DATE+timedelta(days=14)))
+        
+        with st.spinner('Wait for it...'):
+            st.write(pd.read_sql_query(q5,engine))
+        st.snow()
+    elif Query_selection == 'Q40' and submit:
+        q40 = f'''SELECT w_state,
+       i_item_id,
+       sum(CASE
+               WHEN (cast(d_date AS date) < CAST (\'{SALES_DATE}\' AS date)) THEN cs_sales_price - coalesce(cr_refunded_cash,0)
+               ELSE 0
+           END) AS sales_before,
+       sum(CASE
+               WHEN (cast(d_date AS date) >= CAST (\'{SALES_DATE}\' AS date)) THEN cs_sales_price - coalesce(cr_refunded_cash,0)
+               ELSE 0
+           END) AS sales_after
+FROM catalog_sales
+LEFT OUTER JOIN catalog_returns ON (cs_order_number = cr_order_number
+                                    AND cs_item_sk = cr_item_sk) ,warehouse,
+                                                                  item,
+                                                                  date_dim
+WHERE i_current_price BETWEEN 0.99 AND 1.49
+  AND i_item_sk = cs_item_sk
+  AND cs_warehouse_sk = w_warehouse_sk
+  AND cs_sold_date_sk = d_date_sk
+  AND d_date BETWEEN CAST (\'{SALES_DATE-timedelta(days=60)}\' AS date) AND CAST (\'{SALES_DATE+timedelta(days=60)}\' AS date)
+GROUP BY w_state,
+         i_item_id
+ORDER BY w_state,
+         i_item_id
+LIMIT 100;
+
+        '''
+        
+        with st.spinner('Wait for it...'):
+            st.write(pd.read_sql_query(q40,engine))
+        st.snow()
     elif Query_selection == 'Q43' and submit:
         pass
     elif Query_selection == 'Q60' and submit:
@@ -493,9 +550,12 @@ LIMIT 100;'''
                 total_sales
         LIMIT 100;        
         '''
-        st.write(pd.read_sql_query(q60,engine))
+        with st.spinner('Wait for it...'):
+            
+            st.write(pd.read_sql_query(q60,engine))
     elif submit:
         st.write('Wrong Question Number.')
 
     
+
 
