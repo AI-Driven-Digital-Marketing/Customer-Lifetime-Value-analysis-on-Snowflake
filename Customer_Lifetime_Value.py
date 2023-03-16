@@ -162,13 +162,13 @@ Qualification Substitution Parameters:'''
                                             value = 9,
                                             help = 'Input value should in this range.(Range: 1~12)')
 
-        year_input = form.number_input('year',
+        year_input = form.number_input('Year',
                                             min_value=1900,
                                             max_value=2100,
                                             value  = 1998,
                                             help = 'Input value not in range.(Range: 1900~2100)')
 
-        category_input = form.selectbox('I_Category',["Music","Sports","Children","Women",'None',
+        category_input = form.selectbox('Category',["Music","Sports","Children","Women",'None',
                                                               "Home","Electronics","Jewelry","Men","Shoes","Books"])
         submit = form.form_submit_button('Submit')
         
@@ -547,76 +547,79 @@ LIMIT 100;
     elif Query_selection == 'Q60' and submit:
         q60 = f'''
                 WITH ss AS
-        (SELECT i_item_id,
-                sum(ss_ext_sales_price) total_sales
-        FROM store_sales,
-                date_dim,
-                customer_address,
-                item
-        WHERE i_item_id IN
-            (SELECT i_item_id
-                FROM item
-                WHERE i_category ={category_input})
-            AND ss_item_sk = i_item_sk
-            AND ss_sold_date_sk = d_date_sk
-            AND d_year = {year_input}
-            AND d_moy = {month_input}
-            AND ss_addr_sk = ca_address_sk
-            AND ca_gmt_offset = -5
-        GROUP BY i_item_id limit 1000),
-        -- -------------------------------------------------
-            cs AS
-        (SELECT i_item_id,
-                sum(cs_ext_sales_price) total_sales
-        FROM catalog_sales,
-                date_dim,
-                customer_address,
-                item
-        WHERE i_item_id IN
-            (SELECT i_item_id
-                FROM item
-                WHERE i_category ={category_input} limit 1000)
-            AND cs_item_sk = i_item_sk
-            AND cs_sold_date_sk = d_date_sk
-            AND d_year = {year_input}
-            AND d_moy = {month_input}
-            AND cs_bill_addr_sk = ca_address_sk
-            AND ca_gmt_offset = -5
-        GROUP BY i_item_id limit 1000),
-        -- -------------------------------------------------
-            ws AS
-        (SELECT i_item_id,
-                sum(ws_ext_sales_price) total_sales
-        FROM web_sales,
-                date_dim,
-                customer_address,
-                item
-        WHERE i_item_id IN
-            (SELECT i_item_id
-                FROM item
-                WHERE i_category = {category_input} limit 1000)
-            AND ws_item_sk = i_item_sk
-            AND ws_sold_date_sk = d_date_sk
-            AND d_year = {year_input}
-            AND d_moy = {month_input}
-            AND ws_bill_addr_sk = ca_address_sk
-            AND ca_gmt_offset = -5
-        GROUP BY i_item_id
-        limit 1000)
-        -- -------------------------------------------------
-        SELECT i_item_id,
-            sum(total_sales) total_sales
-        FROM
-        (SELECT *
-        FROM ss
-        UNION ALL SELECT *
-        FROM cs
-        UNION ALL SELECT *
-        FROM ws limit 1000) tmp1
-        GROUP BY i_item_id
-        ORDER BY i_item_id,
-                total_sales
-        LIMIT 100;        
+  (SELECT i_item_id,
+          sum(ss_ext_sales_price) total_sales
+   FROM store_sales,
+        date_dim,
+        customer_address,
+        item
+   WHERE i_item_id IN
+       (SELECT i_item_id
+        FROM item
+        WHERE i_category ={category_input}  limit 1000 )
+     AND ss_item_sk = i_item_sk
+     AND ss_sold_date_sk = d_date_sk
+     AND d_year = {year_input}
+     AND d_moy = {month_input}
+     AND ss_addr_sk = ca_address_sk
+     AND ca_gmt_offset = -5
+   GROUP BY i_item_id  limit 1000 ),
+
+
+
+     cs AS
+  (SELECT i_item_id,
+          sum(cs_ext_sales_price) total_sales
+   FROM catalog_sales,
+        date_dim,
+        customer_address,
+        item
+   WHERE i_item_id IN
+       (SELECT i_item_id
+        FROM item
+        WHERE i_category ={category_input}  limit 1000 )
+     AND cs_item_sk = i_item_sk
+     AND cs_sold_date_sk = d_date_sk
+     AND d_year = {year_input}
+     AND d_moy = {month_input}
+     AND cs_bill_addr_sk = ca_address_sk
+     AND ca_gmt_offset = -5
+   GROUP BY i_item_id  limit 1000),
+
+
+     ws AS
+  (SELECT i_item_id,
+          sum(ws_ext_sales_price) total_sales
+   FROM web_sales,
+        date_dim,
+        customer_address,
+        item
+   WHERE i_item_id IN
+       (SELECT i_item_id
+        FROM item
+        WHERE i_category = {category_input} limit 1000)
+     AND ws_item_sk = i_item_sk
+     AND ws_sold_date_sk = d_date_sk
+     AND d_year = {year_input}
+     AND d_moy = {month_input}
+     AND ws_bill_addr_sk = ca_address_sk
+     AND ca_gmt_offset = -5
+   GROUP BY i_item_id  limit 1000 )
+
+
+SELECT i_item_id,
+       sum(total_sales) total_sales
+FROM
+  (SELECT *
+   FROM ss
+   UNION ALL SELECT *
+   FROM cs
+   UNION ALL SELECT *
+   FROM ws limit 1000) tmp1
+GROUP BY i_item_id
+ORDER BY i_item_id,
+         total_sales
+LIMIT 100;
         '''
         with st.spinner('Wait for it...'):
             
