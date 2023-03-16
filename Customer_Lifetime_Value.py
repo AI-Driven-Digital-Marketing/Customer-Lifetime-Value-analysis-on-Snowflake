@@ -556,14 +556,14 @@ LIMIT 100;
    WHERE i_item_id IN
        (SELECT i_item_id
         FROM item
-        WHERE i_category ={category_input}  limit 1000 )
+        WHERE i_category = {category_input}  limit 1000 )
      AND ss_item_sk = i_item_sk
      AND ss_sold_date_sk = d_date_sk
      AND d_year = {year_input}
      AND d_moy = {month_input}
      AND ss_addr_sk = ca_address_sk
      AND ca_gmt_offset = -5
-   GROUP BY i_item_id  limit 1000 ),
+   GROUP BY i_item_id  limit 500  ),
 
 
 
@@ -577,14 +577,14 @@ LIMIT 100;
    WHERE i_item_id IN
        (SELECT i_item_id
         FROM item
-        WHERE i_category ={category_input}  limit 1000 )
+        WHERE i_category = {category_input}  limit 1000 )
      AND cs_item_sk = i_item_sk
      AND cs_sold_date_sk = d_date_sk
      AND d_year = {year_input}
      AND d_moy = {month_input}
      AND cs_bill_addr_sk = ca_address_sk
      AND ca_gmt_offset = -5
-   GROUP BY i_item_id  limit 1000),
+   GROUP BY i_item_id  limit  500 ),
 
 
      ws AS
@@ -604,7 +604,7 @@ LIMIT 100;
      AND d_moy = {month_input}
      AND ws_bill_addr_sk = ca_address_sk
      AND ca_gmt_offset = -5
-   GROUP BY i_item_id  limit 1000 )
+   GROUP BY i_item_id  limit 500 )
 
 
 SELECT i_item_id,
