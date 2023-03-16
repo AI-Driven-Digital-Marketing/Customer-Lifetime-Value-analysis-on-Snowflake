@@ -42,7 +42,7 @@ _,col2,_ = st.columns([1,8,1])
 #col1, col2 = st.columns(2,gap = "medium")
 
 with col1:
-    # lai's contribution here
+    
     Query_selection = st.selectbox('Select the Query here:',
                             [ 'Q1','Q2','Q3','Q4','Q5','Q40','Q43','Q60']
                            )
@@ -184,12 +184,11 @@ with col2:
                 order by c_customer_id
                  limit 100;'''.format(year = q1_year, state = q1_state, agg = q1_agg)
         with st.spinner('Wait for it...'):
-            time.sleep(5)
-        st.write(pd.read_sql_query(q1 ,engine))
+            st.write(pd.read_sql_query(q1 ,engine))
         st.snow()
     elif Query_selection == 'Q2' and submit:
         # the query runs super slow
-        st.write(pd.read_sql_query('select * from WEB_SALES limit 10;',engine))
+        
         q2 = f'''WITH wscs AS
   (SELECT sold_date_sk,
           sales_price
@@ -272,9 +271,9 @@ WHERE d_week_seq1 = d_week_seq2-53
 ORDER BY d_week_seq1
 limit 1000;
 '''
-        st.write(pd.read_sql_query(q2 ,engine))
+        
         with st.spinner('Wait for it...'):
-            time.sleep(5)
+            st.write(pd.read_sql_query(q2 ,engine))
         st.snow()
     elif Query_selection == 'Q3' and submit:
 #         st.write(pd.read_sql_query('select * from WEB_SALES limit 10;',engine))
@@ -297,9 +296,9 @@ ORDER BY dt.d_year,
          sum_agg DESC,
          brand_id
 LIMIT 100;'''
-        st.write(pd.read_sql_query(q3,engine))
+        
         with st.spinner('Wait for it...'):
-            time.sleep(5)
+            st.write(pd.read_sql_query(q3,engine))
         st.snow()
     elif Query_selection == 'Q4' and submit:
         pass
@@ -307,9 +306,9 @@ LIMIT 100;'''
         with open('src/05.txt', 'r') as file:
             q5 = file.read()
         q5 = q5.replace('2000-08-23', str(SALES_DATE)).replace('2000-09-06',str(SALES_DATE+timedelta(days=14)))
-        st.write(pd.read_sql_query(q5,engine))
+        
         with st.spinner('Wait for it...'):
-            time.sleep(5)
+            st.write(pd.read_sql_query(q5,engine))
         st.snow()
     elif Query_selection == 'Q40' and submit:
         q40 = f'''SELECT w_state,
@@ -339,9 +338,9 @@ ORDER BY w_state,
 LIMIT 100;
 
         '''
-        st.write(pd.read_sql_query(q40,engine))
+        
         with st.spinner('Wait for it...'):
-            time.sleep(5)
+            st.write(pd.read_sql_query(q40,engine))
         st.snow()
     elif Query_selection == 'Q43' and submit:
         pass
@@ -418,8 +417,8 @@ LIMIT 100;
         LIMIT 100;        
         '''
         with st.spinner('Wait for it...'):
-            time.sleep(5)
-        st.write(pd.read_sql_query(q60,engine))
+            
+            st.write(pd.read_sql_query(q60,engine))
     elif submit:
         st.write('Wrong Question Number.')
 
