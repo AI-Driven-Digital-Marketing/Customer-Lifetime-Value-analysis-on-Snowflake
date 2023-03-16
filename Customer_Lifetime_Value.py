@@ -5,23 +5,22 @@ import json
 from sqlalchemy import create_engine
 from datetime import date, timedelta
 import time
+from snowflake.sqlalchemy import URL
 st.set_page_config(page_title= "Sqlalchemy Query")
 
 # initialize the engine and read chached data from json files
 @st.cache_resource
 def initialize():
-    engine = create_engine(
-        'snowflake://{user}:{password}@{account}/d'.format(
-            user='ESTPEGION',
+    engine = create_engine(URL(
+            user='GreenTomato',
             password='SnowFlake1234!',
-            account='mg61873.ca-central-1.aws',
+            account='tzb36953.us-east-1',
             database = 'SNOWFLAKE_SAMPLE_DATA',
             schema = 'TPCDS_SF10TCL',
             warehouse = 'COMPUTE_WH',
             role='accountadmin',
             numpy = True
-        )
-    )
+    ))
     
     connection = engine.connect()
     # pd.read_sql_query('''USE SCHEMA SNOWFLAKE_SAMPLE_DATA.TPCDS_SF10TCL;''',engine)
