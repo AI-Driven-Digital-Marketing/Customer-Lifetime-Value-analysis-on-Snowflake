@@ -133,8 +133,22 @@ with col1:
         submit = form.form_submit_button('Submit')
         
     elif Query_selection == 'Q43':
-        pass
+        '''Report the sum of all sales from Sunday to Saturday for stores in a given data range by stores.
+Qualification Substitution Parameters:'''
         
+        form = st.form(key='Q43-form')
+        year_input = form.number_input('Year',
+                                        min_value=1900,
+                                        max_value=2100,
+                                        value  = 2000,
+                                        help = 'Input value not in range.(Range: 1900~2100)')
+        gmt = form.number_input('GMT',
+                                min_value=-8.0,
+                                max_value=-5.0,
+                                value  = -5.0,
+                                step=0.1,
+                                help = 'Input value not in range.(Range: -8~-5)')
+        submit = form.form_submit_button('Submit')
     elif Query_selection == 'Q60':
         
         '''
@@ -477,7 +491,60 @@ LIMIT 100;
             st.write(pd.read_sql_query(q40,engine))
         st.snow()
     elif Query_selection == 'Q43' and submit:
-        pass
+        q43 = f'''
+SELECT s_store_name,
+       s_store_id,
+       sum(CASE
+               WHEN (d_day_name='Sunday') THEN ss_sales_price
+               ELSE NULL
+           END) sun_sales,
+       sum(CASE
+               WHEN (d_day_name='Monday') THEN ss_sales_price
+               ELSE NULL
+           END) mon_sales,
+       sum(CASE
+               WHEN (d_day_name='Tuesday') THEN ss_sales_price
+               ELSE NULL
+           END) tue_sales,
+       sum(CASE
+               WHEN (d_day_name='Wednesday') THEN ss_sales_price
+               ELSE NULL
+           END) wed_sales,
+       sum(CASE
+               WHEN (d_day_name='Thursday') THEN ss_sales_price
+               ELSE NULL
+           END) thu_sales,
+       sum(CASE
+               WHEN (d_day_name='Friday') THEN ss_sales_price
+               ELSE NULL
+           END) fri_sales,
+       sum(CASE
+               WHEN (d_day_name='Saturday') THEN ss_sales_price
+               ELSE NULL
+           END) sat_sales
+FROM date_dim,
+     store_sales,
+     store
+WHERE d_date_sk = ss_sold_date_sk
+  AND s_store_sk = ss_store_sk
+  AND s_gmt_offset = {gmt}
+  AND d_year = {year_input}
+GROUP BY s_store_name,
+         s_store_id
+ORDER BY s_store_name,
+         s_store_id,
+         sun_sales,
+         mon_sales,
+         tue_sales,
+         wed_sales,
+         thu_sales,
+         fri_sales,
+         sat_sales
+LIMIT 100;
+'''
+        with st.spinner('Wait for it...'):
+            st.write(pd.read_sql_query(q43,engine))
+        st.snow()
     elif Query_selection == 'Q60' and submit:
         q60 = f'''
                 WITH ss AS
