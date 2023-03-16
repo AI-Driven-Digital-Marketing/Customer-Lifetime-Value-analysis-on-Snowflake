@@ -563,7 +563,8 @@ LIMIT 100;
             AND d_moy = {month_input}
             AND ss_addr_sk = ca_address_sk
             AND ca_gmt_offset = -5
-        GROUP BY i_item_id limit 1000) limit 1000,
+        GROUP BY i_item_id limit 1000),
+        -- -------------------------------------------------
             cs AS
         (SELECT i_item_id,
                 sum(cs_ext_sales_price) total_sales
@@ -581,7 +582,8 @@ LIMIT 100;
             AND d_moy = {month_input}
             AND cs_bill_addr_sk = ca_address_sk
             AND ca_gmt_offset = -5
-        GROUP BY i_item_id ) limit 1000,
+        GROUP BY i_item_id limit 1000),
+        -- -------------------------------------------------
             ws AS
         (SELECT i_item_id,
                 sum(ws_ext_sales_price) total_sales
@@ -601,7 +603,7 @@ LIMIT 100;
             AND ca_gmt_offset = -5
         GROUP BY i_item_id
         limit 1000)
-        
+        -- -------------------------------------------------
         SELECT i_item_id,
             sum(total_sales) total_sales
         FROM
