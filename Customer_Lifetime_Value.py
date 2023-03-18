@@ -12,9 +12,9 @@ st.set_page_config(page_title= "Sqlalchemy Query")
 @st.cache_resource
 def initialize():
     engine = create_engine(URL(
-            user='GreenTomato',
-            password='SnowFlake1234!',
-            account='tzb36953.us-east-1',
+            user='TomatoSucks',
+            password='snowFlake123!',
+            account='hn51231.east-us-2.azure',
             database = 'SNOWFLAKE_SAMPLE_DATA',
             schema = 'TPCDS_SF10TCL',
             warehouse = 'COMPUTE_WH',
