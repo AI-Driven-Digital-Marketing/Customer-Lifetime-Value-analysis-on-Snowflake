@@ -12,8 +12,8 @@ st.set_page_config(page_title= "Sqlalchemy Query")
 @st.cache_resource
 def initialize():
     engine = create_engine(URL(
-            user='TomatoSucks',
-            password='snowFlake123!',
+            user='suckFlake',
+            password='suckFlake123!',
             account='hn51231.east-us-2.azure',
             database = 'SNOWFLAKE_SAMPLE_DATA',
             schema = 'TPCDS_SF10TCL',

@@ -1,7 +1,7 @@
 {
   "account"   : "hn51231.east-us-2.azure",
-  "user"      : "TomatoSucks",
-  "password"  : "snowFlake123!",
+  "user"      : "suckFlake",
+  "password"  : "suckFlake123!",
   "role"      : "ACCOUNTADMIN",
   "warehouse" : "COMPUTE_WH",
   "database"  : "SNOWFLAKE-SAMPLE-DATA",
