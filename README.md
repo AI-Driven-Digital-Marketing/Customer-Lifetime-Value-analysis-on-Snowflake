@@ -15,7 +15,7 @@
 ## 1.Overall Steps & Architecture
 
 <div align=center>
-<img src="Workflow.png" width="700px">
+<img src="Workflow.png" width="800px">
 </div>
 
 
