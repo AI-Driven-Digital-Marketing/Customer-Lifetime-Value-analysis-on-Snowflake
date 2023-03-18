@@ -47,7 +47,8 @@ with col1:
                            )
     st.markdown('#### Features')
     if Query_selection == 'Q1':
-        
+        '''Find customers who have returned items more than 20% more often than the average customer returns for a
+store in a given state for a given year.'''
         form = st.form(key='Q1-form')
         year_input = form.number_input('year',
                                         min_value=1900,
@@ -63,6 +64,8 @@ with col1:
         submit = form.form_submit_button('Submit')
 
     elif Query_selection == 'Q2':
+        st.write('''Report the increase of weekly web and catalog sales from one year to the next year for each week. That is,
+compute the increase of Monday, Tuesday, ... Sunday sales from one year to the following.''')
         form = st.form(key='Q2-form')
         year_input = form.number_input('year',
                                         min_value=1900,
@@ -96,6 +99,8 @@ with col1:
         
         
     elif Query_selection == 'Q4':
+        '''Find customers who spend more money via catalog than in stores. Identify preferred customers and their
+country of origin.'''
         form = st.form(key='Q4-form')
         year_input = form.number_input('year',
                                         min_value=1900,
@@ -108,7 +113,9 @@ with col1:
         submit = form.form_submit_button('Submit')
         
     elif Query_selection == 'Q5':
-        
+        '''Report sales, profit, return amount, and net loss in the store, catalog, and web channels for a 14-day window.
+Rollup results by sales channel and channel specific sales method (store for store sales, catalog page for catalog
+sales and web site for web sales)'''
         form = st.form(key='Q40-form')
         SALES_DATE = form.date_input("Select sales date here:",
                                    date(2000, 3, 11),
@@ -162,13 +169,13 @@ Qualification Substitution Parameters:'''
                                             value = 9,
                                             help = 'Input value should in this range.(Range: 1~12)')
 
-        year_input = form.number_input('Year',
+        year_input = form.number_input('year',
                                             min_value=1900,
                                             max_value=2100,
                                             value  = 1998,
                                             help = 'Input value not in range.(Range: 1900~2100)')
 
-        category_input = form.selectbox('Category',["Music","Sports","Children","Women",'None',
+        category_input = form.selectbox('I_Category',["Music","Sports","Children","Women",'None',
                                                               "Home","Electronics","Jewelry","Men","Shoes","Books"])
         submit = form.form_submit_button('Submit')
         
@@ -210,7 +217,7 @@ with col2:
         st.snow()
     elif Query_selection == 'Q2' and submit:
         # the query runs super slow
-        
+       
         q2 = f'''WITH wscs AS
   (SELECT sold_date_sk,
           sales_price
@@ -546,80 +553,75 @@ LIMIT 100;
         st.snow()
     elif Query_selection == 'Q60' and submit:
         q60 = f'''
-               WITH ss AS
-  (SELECT i_item_id,
-          sum(ss_ext_sales_price) total_sales
-   FROM store_sales,
-        date_dim,
-        customer_address,
-        item
-   WHERE i_item_id IN
-       (SELECT i_item_id
-        FROM item
-        WHERE i_category ='Music'  limit 1000 )
-     AND ss_item_sk = i_item_sk
-     AND ss_sold_date_sk = d_date_sk
-     AND d_year = 1998
-     AND d_moy = 9
-     AND ss_addr_sk = ca_address_sk
-     AND ca_gmt_offset = -5
-   GROUP BY i_item_id  limit 1000 ),
-
-
-
-     cs AS
-  (SELECT i_item_id,
-          sum(cs_ext_sales_price) total_sales
-   FROM catalog_sales,
-        date_dim,
-        customer_address,
-        item
-   WHERE i_item_id IN
-       (SELECT i_item_id
-        FROM item
-        WHERE i_category ='Music'  limit 1000 )
-     AND cs_item_sk = i_item_sk
-     AND cs_sold_date_sk = d_date_sk
-     AND d_year = 1998
-     AND d_moy = 9
-     AND cs_bill_addr_sk = ca_address_sk
-     AND ca_gmt_offset = -5
-   GROUP BY i_item_id  limit 1000),
-
-
-     ws AS
-  (SELECT i_item_id,
-          sum(ws_ext_sales_price) total_sales
-   FROM web_sales,
-        date_dim,
-        customer_address,
-        item
-   WHERE i_item_id IN
-       (SELECT i_item_id
-        FROM item
-        WHERE i_category = 'Music' limit 1000)
-     AND ws_item_sk = i_item_sk
-     AND ws_sold_date_sk = d_date_sk
-     AND d_year = 1998
-     AND d_moy = 9
-     AND ws_bill_addr_sk = ca_address_sk
-     AND ca_gmt_offset = -5
-   GROUP BY i_item_id  limit 1000 )
-
-
-SELECT i_item_id,
-       sum(total_sales) total_sales
-FROM
-  (SELECT *
-   FROM ss
-   UNION ALL SELECT *
-   FROM cs
-   UNION ALL SELECT *
-   FROM ws limit 1000) tmp1
-GROUP BY i_item_id
-ORDER BY i_item_id,
-         total_sales
-LIMIT 100;
+                WITH ss AS
+        (SELECT i_item_id,
+                sum(ss_ext_sales_price) total_sales
+        FROM store_sales,
+                date_dim,
+                customer_address,
+                item
+        WHERE i_item_id IN
+            (SELECT i_item_id
+                FROM item
+                WHERE i_category ={category_input})
+            AND ss_item_sk = i_item_sk
+            AND ss_sold_date_sk = d_date_sk
+            AND d_year = {year_input}
+            AND d_moy = {month_input}
+            AND ss_addr_sk = ca_address_sk
+            AND ca_gmt_offset = -5
+        GROUP BY i_item_id limit 1000) limit 1000,
+            cs AS
+        (SELECT i_item_id,
+                sum(cs_ext_sales_price) total_sales
+        FROM catalog_sales,
+                date_dim,
+                customer_address,
+                item
+        WHERE i_item_id IN
+            (SELECT i_item_id
+                FROM item
+                WHERE i_category ={category_input} limit 1000)
+            AND cs_item_sk = i_item_sk
+            AND cs_sold_date_sk = d_date_sk
+            AND d_year = {year_input}
+            AND d_moy = {month_input}
+            AND cs_bill_addr_sk = ca_address_sk
+            AND ca_gmt_offset = -5
+        GROUP BY i_item_id ) limit 1000,
+            ws AS
+        (SELECT i_item_id,
+                sum(ws_ext_sales_price) total_sales
+        FROM web_sales,
+                date_dim,
+                customer_address,
+                item
+        WHERE i_item_id IN
+            (SELECT i_item_id
+                FROM item
+                WHERE i_category = {category_input} limit 1000)
+            AND ws_item_sk = i_item_sk
+            AND ws_sold_date_sk = d_date_sk
+            AND d_year = {year_input}
+            AND d_moy = {month_input}
+            AND ws_bill_addr_sk = ca_address_sk
+            AND ca_gmt_offset = -5
+        GROUP BY i_item_id
+        limit 1000)
+        
+        SELECT i_item_id,
+            sum(total_sales) total_sales
+        FROM
+        (SELECT *
+        FROM ss
+        UNION ALL SELECT *
+        FROM cs
+        UNION ALL SELECT *
+        FROM ws limit 1000) tmp1
+        GROUP BY i_item_id
+        ORDER BY i_item_id,
+                total_sales
+        LIMIT 100;        
         '''
         with st.spinner('Wait for it...'):
             

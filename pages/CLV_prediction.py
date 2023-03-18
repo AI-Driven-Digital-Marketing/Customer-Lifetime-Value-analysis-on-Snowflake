@@ -18,17 +18,47 @@ st.set_page_config(page_title= "Customer Lifetime Value")
 
 st.image(
     "src/1649251328-maximize-your-clv.webp",
-    use_column_width = 'auto',
+    width = 600,
 )
 
 #st.title("XGBoost model to predict CLV")
-
+with st.expander("XGboost Metrics"):
+    st.write('''
+  "Training":    
+  {
+    "MAPE": 0.10485963767796148,    
+    "R2": 0.0002156159931520074,    
+    "RMSE": 3648.279975985239    
+  },    
+  "Test":    
+  {
+    "MAPE": 0.10488693273468783,    
+    "R2": -4.803458124280624e-05,    
+    "RMSE": 3649.372248018043    
+  }
+''')
+with st.expander("Linear Regression Metrics"):
+    st.write('''
+  "Training":    
+  {
+    "MAPE": 0.10487981806292808,    
+    "R2": 0.00018172684338746414,    
+    "RMSE": 3648.985233540816    
+  },    
+  "Test":    
+  {
+    "MAPE": 0.10488251067703308,    
+    "R2": -0.00020184804454337346,    
+    "RMSE": 3648.8711500677236    
+  }
+''')
 col1, col2 = st.columns(2,gap = "medium")
 with col1:
     st.markdown('#### Numeric Features')
     Cus_by = st.number_input('Customer Birth Year:', 
                     min_value=1924,
                     max_value=2020, 
+                     value  = 1998,        
                     help = 'Please type VALID birth Year!!(Range: 1924~2020)'
                             )
 
@@ -83,7 +113,7 @@ def initialize_SF():
     session.use_warehouse('FE_AND_INFERENCE_WH')
     session.use_database('tpcds_xgboost')
     session.use_schema('demo')
-    session.add_packages('snowflake-snowpark-python', 'scikit-learn', 'pandas', 'numpy', 'joblib', 'cachetools', 'xgboost==1.5.0', 'joblib')
+    session.add_packages('snowflake-snowpark-python', 'scikit-learn', 'pandas', 'numpy', 'joblib', 'cachetools', 'xgboost', 'joblib')
     session.add_import("@ml_models_10T/model.joblib")  
     session.add_import("@ml_models_LR_10T/model_LR.joblib")
     return session, ca_zip
@@ -122,12 +152,13 @@ if submit:
     input_df = session.create_dataframe(typed_input, schema=features)
     typed_output = input_df.select(*input_df,
                     predict(*input_df).alias('PREDICTION'))
+    
     output = pd.DataFrame(typed_output.collect()).T
     output.columns = ['']
     st.write(output)
 # if click reset  
-if reset:
-    st.write('放弃reset？')
+# if reset:
+#     st.write('放弃reset？')
     
 
     
