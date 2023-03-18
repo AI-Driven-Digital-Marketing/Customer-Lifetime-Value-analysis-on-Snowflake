@@ -12,7 +12,7 @@
 | **--->** [2.Website by Streamlit](https://dduan-zw-tcp-ds-big-data-explore-customer-lifetime-value-izm9gb.streamlit.app/) |
 
 
-## 1.Overall Architecture
+## 1.Overall Steps & Architecture
 
 <div align=center>
 <img src="Workflow.png" width="700px">
