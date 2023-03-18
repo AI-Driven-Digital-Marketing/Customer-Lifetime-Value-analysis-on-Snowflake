@@ -9,7 +9,9 @@
 
 | **--->** [2.Front-end](Customer_Lifetime_Value.py) |
 
-| **--->** [2.Website by Streamlit](https://dduan-zw-tcp-ds-big-data-explore-customer-lifetime-value-izm9gb.streamlit.app/) |
+| **--->** [3.Website by Streamlit](https://dduan-zw-tcp-ds-big-data-explore-customer-lifetime-value-izm9gb.streamlit.app/) |
+
+| **--->** [4.Codelab](https://dduan-zw-tcp-ds-big-data-explore-customer-lifetime-value-izm9gb.streamlit.app/) |
 
 
 ## 1.Overall Steps & Architecture
