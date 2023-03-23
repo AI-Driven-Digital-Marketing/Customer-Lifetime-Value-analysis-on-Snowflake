@@ -1,10 +1,10 @@
-# Project3 Snowpark Python - TPC DS  - Customer Lifetime Value
+# Snowpark Python - TPC DS  - Customer Lifetime Value
 [![author](https://img.shields.io/badge/Author-Rayden_Xu-blue.svg)](https://www.linkedin.com/in/rundong-xu-269012230/) 
 [![author](https://img.shields.io/badge/Author-Binghui_Lai-blue.svg)](https://www.linkedin.com/in/binghui-lai/) 
 [![author](https://img.shields.io/badge/Author-Ziwei_Duan-blue.svg)](https://www.linkedin.com/in/ziwei-duan-create/) 
 
 ## Quick Portral
-### Project3:
+### 
 | **--->** [1.Script](TCP-Analysis-writeCode.ipynb) |
 
 | **--->** [2.Front-end](Customer_Lifetime_Value.py) |
@@ -13,8 +13,11 @@
 
 | **--->** [4.Codelab](https://dduan-zw-tcp-ds-big-data-explore-customer-lifetime-value-izm9gb.streamlit.app/) |
 
+## Introduction
+Customer lifetime value (CLV) is a business metric used to determine the amount of money customers will spend on your products or service over time. It is the total income a business can expect from a customer over the entire period of their relationship. It’s an important metric as it costs less to keep existing customers than it does to acquire new ones, so increasing the value of your existing customers is a great way to drive growth.
+![image](https://user-images.githubusercontent.com/64514218/227070855-61da5c2b-8f35-4342-8af7-6b0eb9792339.png)
 
-## 1.Overall Steps & Architecture
+## Overall Steps & Architecture
 
 <div align=center>
 <img src="Workflow.png" width="800px">
