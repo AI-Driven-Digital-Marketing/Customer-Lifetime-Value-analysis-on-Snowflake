@@ -31,6 +31,9 @@ Customer lifetime value (CLV) is a business metric used to determine the amount 
 <img src="Workflow.png" width="800px">
 </div>
 
+## Web
+![image](https://user-images.githubusercontent.com/64514218/230969989-acc30530-460b-4fa6-816e-225c814c0091.png)
+
 
 This demo utilizes the [TPC DS sample](https://docs.snowflake.com/en/user-guide/sample-data-tpcds.html) dataset that is made available via  Snowflake share. It can be configured to run on either the 10 TB or the 100 TB version of the dataset. 
 
