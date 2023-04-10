@@ -12,6 +12,14 @@
 | **--->** [3.Website by Streamlit](https://dduan-zw-tcp-ds-big-data-explore-customer-lifetime-value-izm9gb.streamlit.app/) |
 
 | **--->** [4.Codelab](https://dduan-zw-tcp-ds-big-data-explore-customer-lifetime-value-izm9gb.streamlit.app/) |
+### Tech Stack
+- Python
+- Snowflake SQL
+- Streamlit
+- Snowflake
+- Snowpark
+- scikit-learn
+- XGboost
 
 ## Introduction
 Customer lifetime value (CLV) is a business metric used to determine the amount of money customers will spend on your products or service over time. It is the total income a business can expect from a customer over the entire period of their relationship. It’s an important metric as it costs less to keep existing customers than it does to acquire new ones, so increasing the value of your existing customers is a great way to drive growth.
